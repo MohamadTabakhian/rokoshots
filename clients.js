@@ -31,8 +31,8 @@ const pool = [
   'avalon3.jpeg', 'avalon4.jpeg',
   'gemini1.jpg', 'gemini2.jpg',
   'gemini3.jpg', 'gemini4.jpg',
-  '42-1.JPG', '42-2.JPG',
-  '42-3.JPG', '42-4.JPG',
+  '42-4.JPG', '42-2.JPG',
+  '42-1.JPG', '42-3.JPG',
   'pizza1.JPG','pizza2.JPG','pizza3.JPG','pizza4.JPG',
   'sky1.jpeg','sky2.jpeg','sky3.jpeg','sky4.jpeg',
   'cortez1.JPG','cortez2.JPG','cortez3.JPG','cortez4.JPG' , 
@@ -41,19 +41,22 @@ const pool = [
   'moss1.JPG','moss2.JPG','moss3.JPG','moss4.JPG','moss5.JPG',
   'tenebris1.JPG','tenebris2.JPG','tenebris3.JPG','tenebris4.JPG','tenebris5.JPG',
   'muse1.jpg','muse2.jpg','muse3.jpg','muse4.jpg',
-  'valley1.jpeg','valley2.jpeg','valley3.jpeg','valley4.jpeg','valley5.jpeg'
-
+  'valley1.jpeg','valley2.jpeg','valley3.jpeg','valley4.jpeg','valley5.jpeg',
+  'sauska1.JPG','sauska2.JPG','sauska3.JPG','sauska4.JPG',
+  'yacht1.JPG','yacht2.JPG','yacht3.JPG','yacht4.JPG',
+  'infinity1.jpg','infinity2.jpg','infinity3.jpg','infinity4.jpg',
+  'furia1.JPG','furia2.JPG','furia3.JPG','furia4.JPG'
 ];
 // 15 clients — replace names/photos with real ones as the roster grows
 const clients = [];
 const names = [
   'Starbucks', 'Al Habtoor Palace', 'Velvet Bar & Cafe', 'Avalon Hotel & Spa',
   'Gemini Bar', '42 Restaurant (Michelin star)', 'PizzaMe', 'SkyRose Bar', 'Cortez Restaurant', 'Simon’s burger',
-  'Marriott Hotel ', 'The Moss','Tenebris vodka','Cafe Muse', 'Valley Budapest'
+  'Marriott Hotel ', 'The Moss','Tenebris vodka','Cafe Muse', 'Valley Budapest', 'Sauska Tokaj','Avalon Yacht', 'Infinity Hotel','Furia Restaurant'
 ];
 // Photo counts per client, in the same order as `names` — matches how each
 // client's photos are grouped consecutively in `pool` above.
-const photoCounts = [4, 4, 4, 4, 4, 4, 4, 4, 4, 1, 5, 5, 5, 4, 5];
+const photoCounts = [4, 4, 4, 4, 4, 4, 4, 4, 4, 1, 5, 5, 5, 4, 5, 4, 4, 4, 4];
 // I Have too add other Logos
 const logos = { 'Starbucks': 'starbucks-logo.svg', 'Mariott Hotel': 'marriott-logo.svg' };
 let poolOffset = 0;

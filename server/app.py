@@ -1,12 +1,56 @@
+import os
+import smtplib
 import sqlite3
 from datetime import datetime, timezone
+from email.message import EmailMessage
 from pathlib import Path
 
 from flask import Flask, request, jsonify
 
 DB_PATH = Path(__file__).parent / "bookings.db"
 
+SMTP_HOST = os.environ.get("SMTP_HOST", "smtp.gmail.com")
+SMTP_PORT = int(os.environ.get("SMTP_PORT", "587"))
+SMTP_USER = os.environ.get("SMTP_USER")
+SMTP_PASSWORD = os.environ.get("SMTP_PASSWORD")
+NOTIFY_EMAIL = os.environ.get("NOTIFY_EMAIL", "info@rokoshots.hu")
+
 app = Flask(__name__)
+
+
+def send_booking_email(data):
+    if not SMTP_USER or not SMTP_PASSWORD:
+        app.logger.warning("SMTP_USER/SMTP_PASSWORD not set — skipping booking email")
+        return
+
+    msg = EmailMessage()
+    msg["Subject"] = f"New Shoot Booking — {data['name']}"
+    msg["From"] = SMTP_USER
+    msg["To"] = NOTIFY_EMAIL
+    msg["Reply-To"] = data["email"]
+    msg.set_content(
+        "\n".join(
+            [
+                f"Name: {data['name']}",
+                f"Email: {data['email']}",
+                f"Phone: {data.get('phone') or '—'}",
+                f"Company: {data.get('company') or '—'}",
+                f"Project type: {data.get('projectType') or '—'}",
+                f"Location: {data.get('location') or '—'}",
+                f"Date: {data['date']}",
+                f"Time: {data['time']}",
+                f"Duration: {data.get('duration') or 1}h",
+                "",
+                "Details:",
+                data.get("message") or "—",
+            ]
+        )
+    )
+
+    with smtplib.SMTP(SMTP_HOST, SMTP_PORT, timeout=10) as server:
+        server.starttls()
+        server.login(SMTP_USER, SMTP_PASSWORD)
+        server.send_message(msg)
 
 
 def get_db():
@@ -68,6 +112,11 @@ def create_booking():
             ),
         )
     conn.close()
+
+    try:
+        send_booking_email(data)
+    except Exception:
+        app.logger.exception("Failed to send booking notification email")
 
     return jsonify(status="ok", id=cur.lastrowid), 201
 

@@ -33,6 +33,7 @@ cat <<'EOF'
   cd /opt/rokoshots/server
   python3 -m venv venv
   ./venv/bin/pip install -r requirements.txt
+  cp .env.example .env && nano .env   # fill in SMTP_USER / SMTP_PASSWORD (Gmail App Password)
   sudo cp rokoshots-api.service /etc/systemd/system/
   sudo chown -R www-data:www-data /opt/rokoshots/server
   sudo systemctl daemon-reload
