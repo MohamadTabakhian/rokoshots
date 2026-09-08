@@ -15,10 +15,10 @@ clientsMarquee.innerHTML = marqueeItemsHtml + marqueeItemsHtml;
 
 // Featured Projects — carousel + per-project lightbox
 const projects = [
-  { key: 'restaurant', photos: ['42-1.JPG', 'cortez1.JPG','moss6.JPG','moss7.JPG','pizza2.JPG'] },
-  { key: 'hotel', photos: ['habtoor1.JPG','habtoor4.JPG','merriott4.jpeg','merriott1.jpeg','moss2.JPG'] },
-  { key: 'bar', photos: ['velvet3.jpg',  'avalon1.jpeg','tenebris4.JPG','tenebris1.JPG','gemini3.jpg'] },
-  { key: 'cafe', photos: ['muse1.jpg','muse3.jpg','velvet4.jpg','velvet3.jpg',''] }
+  { key: 'restaurant', photos: ['R1.jpg', 'R2.jpg','R3.jpg','R4.jpg','R5.jpg','R6.jpg','R7.jpg','R8.jpg'] },
+  { key: 'hotel', photos: ['H1.jpeg','H2.jpeg','H3.jpeg','H4.jpeg','H5.jpeg','H6.jpeg','H7.jpeg','H8.jpeg','H9.jpeg','H10.jpeg'] },
+  { key: 'bar', photos: ['B1.jpeg',  'B2.jpeg','B3.jpeg','B4.jpeg','B5.jpeg','B6.jpeg','B7.jpeg','B8.jpeg','B9.jpeg','B10.jpeg','B11.jpeg'] },
+  { key: 'cafe', photos: ['C1.jpeg','C2.jpeg','C3.jpeg','C4.jpeg','C5.jpeg','C6.jpeg','C7.jpeg','C8.jpeg','C9.jpeg','C10.jpeg','C11.jpeg'] }
 ];
 
 const projectsTrack = document.getElementById('projectsTrack');

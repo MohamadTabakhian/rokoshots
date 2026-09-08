@@ -22,28 +22,25 @@ mobileMenu.querySelectorAll('a').forEach(a => {
   });
 });
 
-// Left/right photo stacks — each tile picks a RANDOM photo from its pool every 10 seconds
-const photoPool = [
-  'col1-1.jpg', 'col1-2.jpg', 'col1-3.jpg',
-  'col1-4.jpg', 'col1-5.jpg', 'col1-6.jpg',
-  'col2-1.jpg', 'col2-2.jpg', 'col2-3.jpg',
-  'col2-4.jpg', 'col2-5.jpg', 'col2-6.jpg',
-  'furia-1.jpg', 'hotel-1.jpg',
-  'cafe-1.jpg', 'coastal-1.jpg',
-  'chefs-table-1.jpg', 'tourism-1.jpg'
-];
+// Left/right photo stacks — same rotating images as the homepage hero columns
+const col1Images = ['A1.jpg', 'A2.jpg', 'A3.jpg', 'A4.jpg', 'A5.jpeg', 'A6.jpg'];
+const col2Images = ['A7.jpg', 'A8.jpeg', 'A9.jpg', 'A10.jpeg', 'A11.jpeg', 'A12.jpeg'];
 
-function randomCycle(tileId){
+function startCycle(tileId, images, startIndex){
   const img = document.querySelector('#' + tileId + ' img');
+  let i = startIndex;
   setInterval(() => {
-    const next = photoPool[Math.floor(Math.random() * photoPool.length)];
+    i = (i + 1) % images.length;
     img.style.animation = 'none';
-    img.offsetHeight; // restart animation
+    img.offsetHeight; // force reflow to restart animation
     img.style.animation = '';
-    img.src = next;
+    img.src = images[i];
   }, 10000);
 }
-['bpLeft1', 'bpLeft2', 'bpRight1', 'bpRight2'].forEach(randomCycle);
+startCycle('bpLeft1', col1Images, 0);
+startCycle('bpLeft2', col1Images, 3);
+startCycle('bpRight1', col2Images, 0);
+startCycle('bpRight2', col2Images, 3);
 
 // Reservation form — builds a pre-filled Google Calendar event and opens it
 const bookingForm = document.getElementById('bookingForm');
