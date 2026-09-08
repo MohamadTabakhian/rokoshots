@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RokoShots</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body id="top">
+
+<header>
+  <div class="wrap">
+    <a href="#top" class="logo-home">Robin-Kovacs</a>
+
+    <div class="header-right">
+      <nav>
+        <ul>
+          <li><a href="/clients.html" class="nav-clients">Clients</a></li>
+          <li><a href="/about.html" class="nav-gallery">About</a></li>
+        </ul>
+      </nav>
+      <a href="book-a-shoot.html" class="header-cta">Book a Shoot</a>
+      <div class="lang-switch" id="langSwitch">
+        <button type="button" class="active" data-lang="en">En</button>
+        <span class="divider">/</span>
+        <button type="button" data-lang="hu">Hu</button>
+      </div>
+      <button type="button" class="theme-dots" id="themeToggle" aria-label="Toggle light and dark theme">
+        <span></span><span></span>
+      </button>
+      <button type="button" class="menu-toggle" id="menuToggle" aria-label="Open menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+
+  <div class="mobile-menu" id="mobileMenu">
+    <nav>
+      <ul>
+        <li><a href="clients.html" class="nav-clients">Clients</a></li>
+        <li><a href="about.html" class="nav-gallery">About</a></li>
+      </ul>
+    </nav>
+    <a href="book-a-shoot.html" class="header-cta mobile-cta">Book a Shoot</a>
+    <div class="lang-switch mobile-lang" id="langSwitchMobile">
+      <button type="button" class="active" data-lang="en">En</button>
+      <span class="divider">/</span>
+      <button type="button" data-lang="hu">Hu</button>
+    </div>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap">
+    <h1 class="hero-name">RokoShots</h1>
+
+    <div class="hero-columns">
+      <div class="hero-col" id="col1">
+        <img src="col1-1.jpg" alt="">
+      </div>
+      <div class="hero-col" id="col2">
+        <img src="col2-1.jpg" alt="">
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="about" id="about">
+  <div class="wrap">
+    <div class="about-block">
+      <p>Crafting visuals that turn attention into business wins.</p>
+    </div>
+    <div class="about-block">
+      <!-- <p>I turn plates, spaces and moments into images that make people want to book — not just pretty pictures.</p> -->
+    </div>
+    <div class="about-block">
+      <!-- <p>Every shoot is built around one question: will this image make someone book a table, a room, a trip?</p> -->
+    </div>
+  </div>
+</section>
+
+<section class="clients-marquee" aria-label="Clients we've worked with">
+  <div class="marquee">
+    <div class="marquee-track" id="clientsMarquee"></div>
+  </div>
+  <div class="clients-marquee-cta">
+    <a href="clients.html" class="see-clients-btn">
+      <span>See All Clients</span>
+      <span class="see-clients-arrow">&#8594;</span>
+    </a>
+  </div>
+</section>
+
+<section class="projects" id="gallery">
+  <div class="wrap">
+    <h2 class="projects-title">Featured Projects</h2>
+  </div>
+
+  <div class="carousel-wrap">
+    <button type="button" class="carousel-arrow left" id="arrowLeft" aria-label="Previous projects">&#8592;</button>
+    <button type="button" class="carousel-arrow right" id="arrowRight" aria-label="Next projects">&#8594;</button>
+
+    <div class="projects-track" id="projectsTrack">
+      <!-- project cards injected by script.js -->
+    </div>
+  </div>
+</section>
+
+<div class="lightbox" id="lightbox">
+  <button type="button" class="lightbox-close" id="lightboxClose" aria-label="Close">&times;</button>
+  <button type="button" class="lightbox-arrow left" id="lightboxPrev" aria-label="Previous photo">&#8592;</button>
+  <div class="lightbox-stage">
+    <img id="lightboxImg" src="" alt="">
+    <div class="lightbox-caption" id="lightboxCaption"></div>
+  </div>
+  <button type="button" class="lightbox-arrow right" id="lightboxNext" aria-label="Next photo">&#8594;</button>
+</div>
+
+<footer class="site-footer">
+  <div class="footer-grid">
+    <a href="book-a-shoot.html" class="footer-tile">
+      <div class="footer-tile-photo"><img src="/1.jpeg" alt="Contact RokoShots"></div>
+      <span class="footer-tile-label">Contact Me</span>
+    </a>
+
+    <div class="footer-newsletter">
+      <h2>Join my newsletter</h2>
+      <a href="book-a-shoot.html" class="footer-newsletter-btn">Reserve a Shoot</a>
+    </div>
+
+    <a href="https://www.instagram.com/rokoshots" target="_blank" rel="noopener" class="footer-tile">
+      <div class="footer-tile-photo"><img src="/2.jpg" alt="RokoShots on Instagram"></div>
+      <span class="footer-tile-label">Instagram</span>
+    </a>
+  </div>
+
+  <div class="footer-mark">&copy; &#8734; RokoShots</div>
+</footer>
+
+<script src="script.js"></script>
+</body> 
+</html>

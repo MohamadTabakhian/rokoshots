@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Clients — RokoShots</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body id="top">
+
+<header>
+  <div class="wrap">
+    <a href="index.html#top" class="logo-home">Robin-Kovacs</a>
+
+    <div class="header-right">
+      <nav>
+        <ul>
+          <li><a href="clients.html" class="nav-clients">Clients</a></li>
+          <li><a href="about.html" class="nav-gallery">About</a></li>
+        </ul>
+      </nav>
+      <a href="book-a-shoot.html" class="header-cta">Book a Shoot</a>
+      <div class="lang-switch" id="langSwitch">
+        <button type="button" class="active" data-lang="en">En</button>
+        <span class="divider">/</span>
+        <button type="button" data-lang="hu">Hu</button>
+      </div>
+      <button type="button" class="theme-dots" id="themeToggle" aria-label="Toggle light and dark theme">
+        <span></span><span></span>
+      </button>
+      <button type="button" class="menu-toggle" id="menuToggle" aria-label="Open menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+
+  <div class="mobile-menu" id="mobileMenu">
+    <nav>
+      <ul>
+        <li><a href="clients.html" class="nav-clients">Clients</a></li>
+        <li><a href="about.html" class="nav-gallery">About</a></li>
+      </ul>
+    </nav>
+    <a href="book-a-shoot.html" class="header-cta mobile-cta">Book a Shoot</a>
+    <div class="lang-switch mobile-lang" id="langSwitchMobile">
+      <button type="button" class="active" data-lang="en">En</button>
+      <span class="divider">/</span>
+      <button type="button" data-lang="hu">Hu</button>
+    </div>
+  </div>
+</header>
+
+<section class="clients-page-title">
+  <div class="wrap">
+    <h1 class="hero-name">Clients</h1>
+  </div>
+</section>
+
+<section class="clients-list" id="clientsList">
+  <!-- client rows injected by clients.js, 5 per page -->
+</section>
+
+<div class="clients-pagination" id="clientsPagination">
+  <button type="button" class="clients-page-arrow" id="clientsPagePrev" aria-label="Previous page">&#8592;</button>
+  <span class="clients-page-count" id="clientsPageCount"></span>
+  <button type="button" class="clients-page-arrow" id="clientsPageNext" aria-label="Next page">&#8594;</button>
+</div>
+
+<div class="client-lightbox" id="clientLightbox">
+  <button type="button" class="cl-arrow left" id="clPrev" aria-label="Previous photo">&#8592;</button>
+  <div class="cl-stage">
+    <img id="clImg" src="" alt="">
+  </div>
+  <button type="button" class="cl-arrow right" id="clNext" aria-label="Next photo">&#8594;</button>
+
+  <div class="cl-bar">
+    <button type="button" class="cl-close" id="clClose">[ X ] Close</button>
+    <div class="cl-name" id="clName"></div>
+    <div class="cl-count" id="clCount"></div>
+  </div>
+</div>
+
+<footer class="site-footer">
+  <div class="footer-grid">
+    <a href="book-a-shoot.html" class="footer-tile">
+      <div class="footer-tile-photo"><img src="/1.jpeg" alt="Contact RokoShots"></div>
+      <span class="footer-tile-label">Contact Me</span>
+    </a>
+
+    <div class="footer-newsletter">
+      <h2>Join my newsletter</h2>
+      <a href="book-a-shoot.html" class="footer-newsletter-btn">Reserve a Shoot</a>
+    </div>
+
+    <a href="https://www.instagram.com/rokoshots" target="_blank" rel="noopener" class="footer-tile">
+      <div class="footer-tile-photo"><img src="/2.jpg" alt="RokoShots on Instagram"></div>
+      <span class="footer-tile-label">Instagram</span>
+    </a>
+  </div>
+
+  <div class="footer-mark">&copy; &#8734; RokoShots</div>
+</footer>
+
+<script src="clients.js"></script>
+</body>
+</html>

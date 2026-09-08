@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Book a Shoot — RokoShots</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body id="top">
+
+<header>
+  <div class="wrap">
+    <a href="index.html#top" class="logo-home">Robin-Kovacs</a>
+
+    <div class="header-right">
+      <nav>
+        <ul>
+          <li><a href="clients.html" class="nav-clients">Clients</a></li>
+          <li><a href="about.html" class="nav-gallery">About</a></li>
+        </ul>
+      </nav>
+      <a href="book-a-shoot.html" class="header-cta">Book a Shoot</a>
+      <div class="lang-switch" id="langSwitch">
+        <button type="button" class="active" data-lang="en">En</button>
+        <span class="divider">/</span>
+        <button type="button" data-lang="hu">Hu</button>
+      </div>
+      <button type="button" class="theme-dots" id="themeToggle" aria-label="Toggle light and dark theme">
+        <span></span><span></span>
+      </button>
+      <button type="button" class="menu-toggle" id="menuToggle" aria-label="Open menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+
+  <div class="mobile-menu" id="mobileMenu">
+    <nav>
+      <ul>
+        <li><a href="clients.html" class="nav-clients">Clients</a></li>
+        <li><a href="about.html" class="nav-gallery">About</a></li>
+      </ul>
+    </nav>
+    <a href="book-a-shoot.html" class="header-cta mobile-cta">Book a Shoot</a>
+    <div class="lang-switch mobile-lang" id="langSwitchMobile">
+      <button type="button" class="active" data-lang="en">En</button>
+      <span class="divider">/</span>
+      <button type="button" data-lang="hu">Hu</button>
+    </div>
+  </div>
+</header>
+
+<section class="booking-title">
+  <div class="wrap">
+    <h1 class="hero-name">Book a Shoot</h1>
+  </div>
+</section>
+
+<section class="booking-band">
+  <div class="booking-grid">
+
+    <div class="booking-photos left">
+      <div class="booking-photo" id="bpLeft1"><img src="col1-1.jpg" alt=""></div>
+      <div class="booking-photo" id="bpLeft2"><img src="hotel-1.jpg" alt=""></div>
+    </div>
+
+    <div class="booking-form-card">
+      <h2>Reserve Your Time</h2>
+      <p class="booking-sub">Answer a few questions and pick a slot — we'll open Google Calendar with everything pre-filled so you can confirm in one click.</p>
+
+      <form id="bookingForm">
+        <div class="bf-row">
+          <div class="bf-field">
+            <label>Full Name</label>
+            <input type="text" name="name" required>
+          </div>
+          <div class="bf-field">
+            <label>Company</label>
+            <input type="text" name="company">
+          </div>
+        </div>
+
+        <div class="bf-row">
+          <div class="bf-field">
+            <label>Email</label>
+            <input type="email" name="email" required>
+          </div>
+          <div class="bf-field">
+            <label>Phone</label>
+            <input type="tel" name="phone">
+          </div>
+        </div>
+
+        <div class="bf-row">
+          <div class="bf-field">
+            <label>Project Type</label>
+            <select name="projectType">
+              <option>Restaurant</option>
+              <option>Hotel</option>
+              <option>Café</option>
+              <option>Tourism / Travel Brand</option>
+              <option>Other</option>
+            </select>
+          </div>
+          <div class="bf-field">
+            <label>Shoot Location</label>
+            <input type="text" name="location" placeholder="City / venue">
+          </div>
+        </div>
+
+        <div class="bf-row">
+          <div class="bf-field">
+            <label>Preferred Date</label>
+            <input type="date" name="date" required>
+          </div>
+          <div class="bf-field">
+            <label>Preferred Time</label>
+            <input type="time" name="time" required>
+          </div>
+        </div>
+
+        <div class="bf-field">
+          <label>Shoot Duration</label>
+          <select name="duration">
+            <option value="1">1 hour</option>
+            <option value="2">2 hours</option>
+            <option value="4">Half day (4 hours)</option>
+            <option value="8">Full day (8 hours)</option>
+          </select>
+        </div>
+
+        <div class="bf-field">
+          <label>Tell us about the shoot</label>
+          <textarea name="message" placeholder="What are we shooting, how many dishes/rooms/spaces, any deadlines..."></textarea>
+        </div>
+
+        <button type="submit" class="reserve-btn">Reserve My Slot</button>
+        <p class="booking-note" id="bookingNote"></p>
+      </form>
+    </div>
+
+    <div class="booking-photos right">
+      <div class="booking-photo" id="bpRight1"><img src="col2-1.jpg" alt=""></div>
+      <div class="booking-photo" id="bpRight2"><img src="cafe-1.jpg" alt=""></div>
+    </div>
+
+  </div>
+</section>
+
+<script src="booking.js"></script>
+</body>
+</html>
