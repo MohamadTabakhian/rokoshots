@@ -22,27 +22,6 @@ mobileMenu.querySelectorAll('a').forEach(a => {
   });
 });
 
-// Language switcher — En/Hu (header only, for now)
-const translations = {
-  en: { clients: 'Clients', gallery: 'Gallery', cta: 'Book a Shoot' },
-  hu: { clients: 'Ügyfelek', gallery: 'Galéria', cta: 'Foglalj fotózást' }
-};
-const allLangButtons = document.querySelectorAll('.lang-switch button');
-const allNavClients = document.querySelectorAll(".nav-clients");
-const allNavGallery = document.querySelectorAll(".nav-gallery");
-const allCtaBtns = document.querySelectorAll('.header-cta');
-
-function setLang(lang){
-  allLangButtons.forEach(b => b.classList.toggle('active', b.dataset.lang === lang));
-  allNavClients.forEach(el => el.textContent = translations[lang].clients);
-  allNavGallery.forEach(el => el.textContent = translations[lang].gallery);
-  allCtaBtns.forEach(el => el.textContent = translations[lang].cta);
-  document.documentElement.lang = lang;
-}
-allLangButtons.forEach(btn => {
-  btn.addEventListener('click', () => setLang(btn.dataset.lang));
-});
-
 // Photo pool to draw from (reused/cycled — swap with real per-client photos later)
 const pool = [
   'star1.jpg', 'star2.jpg', 'star3.jpg', 'star4.jpg',

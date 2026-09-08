@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="light">
+<html lang="en" data-theme="light" data-i18n-title="titleAbout">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -18,20 +18,20 @@
     <div class="header-right">
       <nav>
         <ul>
-          <li><a href="clients.html" class="nav-clients">Clients</a></li>
-          <li><a href="about.html" class="nav-gallery">About</a></li>
+          <li><a href="clients.html" class="nav-clients" data-i18n="navClients">Clients</a></li>
+          <li><a href="about.html" class="nav-gallery" data-i18n="navGallery">About</a></li>
         </ul>
       </nav>
-      <a href="book-a-shoot.html" class="header-cta">Book a Shoot</a>
+      <a href="book-a-shoot.html" class="header-cta" data-i18n="headerCta">Book a Shoot</a>
       <div class="lang-switch" id="langSwitch">
         <button type="button" class="active" data-lang="en">En</button>
         <span class="divider">/</span>
         <button type="button" data-lang="hu">Hu</button>
       </div>
-      <button type="button" class="theme-dots" id="themeToggle" aria-label="Toggle light and dark theme">
+      <button type="button" class="theme-dots" id="themeToggle" aria-label="Toggle light and dark theme" data-i18n-aria-label="ariaToggleTheme">
         <span></span><span></span>
       </button>
-      <button type="button" class="menu-toggle" id="menuToggle" aria-label="Open menu" aria-expanded="false">
+      <button type="button" class="menu-toggle" id="menuToggle" aria-label="Open menu" aria-expanded="false" data-i18n-aria-label="ariaOpenMenu">
         <span></span><span></span><span></span>
       </button>
     </div>
@@ -40,11 +40,11 @@
   <div class="mobile-menu" id="mobileMenu">
     <nav>
       <ul>
-        <li><a href="clients.html" class="nav-clients">Clients</a></li>
-        <li><a href="about.html" class="nav-gallery">About</a></li>
+        <li><a href="clients.html" class="nav-clients" data-i18n="navClients">Clients</a></li>
+        <li><a href="about.html" class="nav-gallery" data-i18n="navGallery">About</a></li>
       </ul>
     </nav>
-    <a href="book-a-shoot.html" class="header-cta mobile-cta">Book a Shoot</a>
+    <a href="book-a-shoot.html" class="header-cta mobile-cta" data-i18n="headerCta">Book a Shoot</a>
     <div class="lang-switch mobile-lang" id="langSwitchMobile">
       <button type="button" class="active" data-lang="en">En</button>
       <span class="divider">/</span>
@@ -66,13 +66,13 @@
     </div>
 
     <div class="about-page-copy">
-      <p>Hi, I’m Robin, a 26-year-old entrepreneur, photographer and filmmaker.</p>
-      <p>For nearly eight years, I have been building my business with the goal of helping premium hotels, restaurants, and brands in the hospitality and tourism sectors grow through strategic visual communication.</p>
-      <p>To me, photography and video are simply tools. Their true value lies not in the volume of content produced, but in the impact they create: greater visibility, a stronger brand presence, more enquiries and, ultimately, increased revenue.</p>
-      <p>That is why every collaboration begins with understanding your business, your guests and your commercial objectives. We do not simply create beautiful photographs and striking videos. We produce purposeful visual content that authentically communicates the value of your brand, differentiates you from your competitors and genuinely supports your growth.</p>
-      <p>My goal is for our work together to be more than just an expense—it should be a long-term investment. We create content that can be used effectively across multiple platforms and campaigns, delivering tangible, measurable impact.</p>
-      <p>I personally lead every project, both strategically and creatively, supported by a close-knit team throughout the production process. This ensures that the entire experience remains clear, seamless and consistent.</p>
-      <p>Whether you already have a clear concept or simply know the business outcome you want to achieve, feel free to get in touch. I will guide you through the entire process, from planning to execution, while my team and I ensure that the final result reflects the quality of your brand and genuinely supports your goals.</p>
+      <p data-i18n="aboutP1">Hi, I’m Robin, a 26-year-old entrepreneur, photographer and filmmaker.</p>
+      <p data-i18n="aboutP2">For nearly eight years, I have been building my business with the goal of helping premium hotels, restaurants, and brands in the hospitality and tourism sectors grow through strategic visual communication.</p>
+      <p data-i18n="aboutP3">To me, photography and video are simply tools. Their true value lies not in the volume of content produced, but in the impact they create: greater visibility, a stronger brand presence, more enquiries and, ultimately, increased revenue.</p>
+      <p data-i18n="aboutP4">That is why every collaboration begins with understanding your business, your guests and your commercial objectives. We do not simply create beautiful photographs and striking videos. We produce purposeful visual content that authentically communicates the value of your brand, differentiates you from your competitors and genuinely supports your growth.</p>
+      <p data-i18n="aboutP5">My goal is for our work together to be more than just an expense—it should be a long-term investment. We create content that can be used effectively across multiple platforms and campaigns, delivering tangible, measurable impact.</p>
+      <p data-i18n="aboutP6">I personally lead every project, both strategically and creatively, supported by a close-knit team throughout the production process. This ensures that the entire experience remains clear, seamless and consistent.</p>
+      <p data-i18n="aboutP7">Whether you already have a clear concept or simply know the business outcome you want to achieve, feel free to get in touch. I will guide you through the entire process, from planning to execution, while my team and I ensure that the final result reflects the quality of your brand and genuinely supports your goals.</p>
     </div>
   </div>
 </section>
@@ -80,24 +80,25 @@
 <footer class="site-footer">
   <div class="footer-grid">
     <a href="book-a-shoot.html" class="footer-tile">
-      <div class="footer-tile-photo"><img src="/1.jpeg" alt="Contact RokoShots"></div>
-      <span class="footer-tile-label">Contact Me</span>
+      <div class="footer-tile-photo"><img src="/1.jpeg" alt="Contact RokoShots" data-i18n-alt="footerContactAlt"></div>
+      <span class="footer-tile-label" data-i18n="footerContactLabel">Contact Me</span>
     </a>
 
     <div class="footer-newsletter">
-      <h2>Join my newsletter</h2>
-      <a href="book-a-shoot.html" class="footer-newsletter-btn">Reserve a Shoot</a>
+      <h2 data-i18n="footerNewsletterTitle">Join my newsletter</h2>
+      <a href="book-a-shoot.html" class="footer-newsletter-btn" data-i18n="footerReserveBtn">Reserve a Shoot</a>
     </div>
 
     <a href="https://www.instagram.com/rokoshots" target="_blank" rel="noopener" class="footer-tile">
-      <div class="footer-tile-photo"><img src="/2.jpg" alt="RokoShots on Instagram"></div>
-      <span class="footer-tile-label">Instagram</span>
+      <div class="footer-tile-photo"><img src="/2.jpg" alt="RokoShots on Instagram" data-i18n-alt="footerInstagramAlt"></div>
+      <span class="footer-tile-label" data-i18n="footerInstagramLabel">Instagram</span>
     </a>
   </div>
 
   <div class="footer-mark">&copy; &#8734; RokoShots</div>
 </footer>
 
+<script src="i18n.js"></script>
 <script src="about.js"></script>
 </body>
 </html>

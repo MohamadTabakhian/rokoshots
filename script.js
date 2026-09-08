@@ -15,25 +15,29 @@ clientsMarquee.innerHTML = marqueeItemsHtml + marqueeItemsHtml;
 
 // Featured Projects — carousel + per-project lightbox
 const projects = [
-  { name: 'Restaurant', photos: ['42-1.JPG', 'cortez1.JPG','moss6.JPG','moss7.JPG','pizza2.JPG'] },
-  { name: 'Hotel', photos: ['habtoor1.JPG','habtoor4.JPG','merriott4.jpeg','merriott1.jpeg','moss2.JPG'] },
-  { name: 'Bar', photos: ['velvet3.jpg',  'avalon1.jpeg','tenebris4.JPG','tenebris1.JPG','gemini3.jpg'] },
-  { name: 'Cafe', photos: ['muse1.jpg','muse3.jpg','velvet4.jpg','velvet3.jpg',''] }
+  { key: 'restaurant', photos: ['42-1.JPG', 'cortez1.JPG','moss6.JPG','moss7.JPG','pizza2.JPG'] },
+  { key: 'hotel', photos: ['habtoor1.JPG','habtoor4.JPG','merriott4.jpeg','merriott1.jpeg','moss2.JPG'] },
+  { key: 'bar', photos: ['velvet3.jpg',  'avalon1.jpeg','tenebris4.JPG','tenebris1.JPG','gemini3.jpg'] },
+  { key: 'cafe', photos: ['muse1.jpg','muse3.jpg','velvet4.jpg','velvet3.jpg',''] }
 ];
 
 const projectsTrack = document.getElementById('projectsTrack');
-projects.forEach((project, i) => {
-  const card = document.createElement('div');
-  card.className = 'project-card';
-  card.innerHTML = `
-    <div class="project-card-frame">
-      <img src="${project.photos[0]}" alt="${project.name}">
-    </div>
-    <div class="project-name">${project.name}</div>
-    <button type="button" class="project-view-btn" data-project="${i}">View Project</button>
-  `;
-  projectsTrack.appendChild(card);
-});
+function renderProjectCards(){
+  projectsTrack.innerHTML = '';
+  projects.forEach((project, i) => {
+    const card = document.createElement('div');
+    card.className = 'project-card';
+    card.innerHTML = `
+      <div class="project-card-frame">
+        <img src="${project.photos[0]}" alt="${RokoI18n.t('project_' + project.key)}">
+      </div>
+      <div class="project-name" data-i18n="project_${project.key}">${RokoI18n.t('project_' + project.key)}</div>
+      <button type="button" class="project-view-btn" data-project="${i}" data-i18n="viewProjectBtn">${RokoI18n.t('viewProjectBtn')}</button>
+    `;
+    projectsTrack.appendChild(card);
+  });
+}
+renderProjectCards();
 
 // Carousel arrows — scroll by one card width at a time
 const arrowLeft = document.getElementById('arrowLeft');
@@ -81,7 +85,7 @@ function openLightbox(projectIndex){
 }
 function updateLightbox(){
   lightboxImg.src = currentProject.photos[currentPhoto];
-  lightboxCaption.textContent = `${currentProject.name} — ${currentPhoto + 1}/${currentProject.photos.length}`;
+  lightboxCaption.textContent = `${RokoI18n.t('project_' + currentProject.key)} — ${currentPhoto + 1}/${currentProject.photos.length}`;
 }
 function closeLightbox(){
   lightbox.classList.remove('open');
@@ -137,27 +141,6 @@ mobileMenu.querySelectorAll('a').forEach(a => {
   });
 });
 
-// Language switcher — En/Hu (desktop + mobile switches stay in sync)
-const translations = {
-  en: { clients: 'Clients', gallery: 'Gallery', cta: 'Book a Shoot' },
-  hu: { clients: 'Ügyfelek', gallery: 'Galéria', cta: 'Foglalj fotózást' }
-};
-const allLangButtons = document.querySelectorAll('.lang-switch button');
-const allNavClients = document.querySelectorAll(".nav-clients");
-const allNavGallery = document.querySelectorAll(".nav-gallery");
-const allCtaBtns = document.querySelectorAll('.header-cta');
-
-function setLang(lang){
-  allLangButtons.forEach(b => b.classList.toggle('active', b.dataset.lang === lang));
-  allNavClients.forEach(el => el.textContent = translations[lang].clients);
-  allNavGallery.forEach(el => el.textContent = translations[lang].gallery);
-  allCtaBtns.forEach(el => el.textContent = translations[lang].cta);
-  document.documentElement.lang = lang;
-}
-allLangButtons.forEach(btn => {
-  btn.addEventListener('click', () => setLang(btn.dataset.lang));
-});
-
 // Hero columns — auto-cycle photos from rokoshots.hu every 1 second
 const col1Images = [
   'A1.jpg',
@@ -189,3 +172,11 @@ function startCycle(colId, images){
 }
 startCycle('col1', col1Images);
 startCycle('col2', col2Images);
+
+// Re-render dynamically-built project cards (and refresh the open lightbox
+// caption) whenever the language changes — data-i18n only covers static markup.
+document.addEventListener('rokoshots:langchange', () => {
+  renderProjectCards();
+  updateCarouselOverflow();
+  if(currentProject) updateLightbox();
+});

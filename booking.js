@@ -22,27 +22,6 @@ mobileMenu.querySelectorAll('a').forEach(a => {
   });
 });
 
-// Language switcher — En/Hu (header only, for now)
-const translations = {
-  en: { clients: 'Clients', gallery: 'Gallery', cta: 'Book a Shoot' },
-  hu: { clients: 'Ügyfelek', gallery: 'Galéria', cta: 'Foglalj fotózást' }
-};
-const allLangButtons = document.querySelectorAll('.lang-switch button');
-const allNavClients = document.querySelectorAll(".nav-clients");
-const allNavGallery = document.querySelectorAll(".nav-gallery");
-const allCtaBtns = document.querySelectorAll('.header-cta');
-
-function setLang(lang){
-  allLangButtons.forEach(b => b.classList.toggle('active', b.dataset.lang === lang));
-  allNavClients.forEach(el => el.textContent = translations[lang].clients);
-  allNavGallery.forEach(el => el.textContent = translations[lang].gallery);
-  allCtaBtns.forEach(el => el.textContent = translations[lang].cta);
-  document.documentElement.lang = lang;
-}
-allLangButtons.forEach(btn => {
-  btn.addEventListener('click', () => setLang(btn.dataset.lang));
-});
-
 // Left/right photo stacks — each tile picks a RANDOM photo from its pool every 10 seconds
 const photoPool = [
   'col1-1.jpg', 'col1-2.jpg', 'col1-3.jpg',
@@ -85,7 +64,7 @@ bookingForm.addEventListener('submit', (e) => {
   const timeVal = data.get('time');
 
   if(!name || !email || !dateVal || !timeVal){
-    bookingNote.textContent = 'Please fill in your name, email, date and time.';
+    bookingNote.textContent = RokoI18n.t('errFillFields');
     bookingNote.classList.add('error');
     return;
   }
@@ -93,7 +72,7 @@ bookingForm.addEventListener('submit', (e) => {
   const durationHours = Number(data.get('duration')) || 1;
   const start = new Date(`${dateVal}T${timeVal}`);
   if(isNaN(start.getTime())){
-    bookingNote.textContent = 'That date/time didn\'t look right — please check it.';
+    bookingNote.textContent = RokoI18n.t('errBadDate');
     bookingNote.classList.add('error');
     return;
   }
@@ -133,6 +112,6 @@ bookingForm.addEventListener('submit', (e) => {
   }).catch(() => {}); // best-effort — calendar link still opens either way
 
   bookingNote.classList.remove('error');
-  bookingNote.textContent = 'Opening Google Calendar — click Save there to confirm your slot.';
+  bookingNote.textContent = RokoI18n.t('bookingOpeningNote');
   window.open(url, '_blank');
 });
