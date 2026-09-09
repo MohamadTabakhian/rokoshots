@@ -47,7 +47,7 @@ const translations = {
     titleBooking: 'Book a Shoot — RokoShots',
     bookingPageHeading: 'Book a Shoot',
     reserveYourTime: 'Reserve Your Time',
-    bookingSub: "Answer a few questions and pick a slot — we'll open Google Calendar with everything pre-filled so you can confirm in one click.",
+    bookingSub: "Answer a few questions and pick a slot — we'll email your reservation request straight to our team.",
     labelFullName: 'Full Name',
     labelCompany: 'Company',
     labelEmail: 'Email',
@@ -55,7 +55,6 @@ const translations = {
     labelProjectType: 'Project Type',
     labelShootLocation: 'Shoot Location',
     placeholderLocation: 'City / venue',
-    labelPreferredDate: 'Preferred Date',
     labelPreferredTime: 'Preferred Time',
     labelShootDuration: 'Shoot Duration',
     labelTellUs: 'Tell us about the shoot',
@@ -70,9 +69,9 @@ const translations = {
     durationOptHalf: 'Half day (4 hours)',
     durationOptFull: 'Full day (8 hours)',
     reserveMySlotBtn: 'Reserve My Slot',
-    errFillFields: 'Please fill in your name, email, date and time.',
-    errBadDate: "That date/time didn't look right — please check it.",
-    bookingOpeningNote: 'Opening Google Calendar — click Save there to confirm your slot.'
+    errFillFields: 'Please fill in your name, email and time.',
+    errSendFailed: "Something went wrong sending your request — please try again or email us directly.",
+    bookingSentNote: "Thanks! Your request has been emailed to us — we'll get back to you shortly."
   },
   hu: {
     navClients: 'Ügyfelek',
@@ -120,7 +119,7 @@ const translations = {
     titleBooking: 'Foglalj fotózást — RokoShots',
     bookingPageHeading: 'Foglalj fotózást',
     reserveYourTime: 'Foglald le az időpontod',
-    bookingSub: 'Válaszolj néhány kérdésre, és válassz egy időpontot — megnyitjuk a Google Naptárat mindennel előre kitöltve, hogy egy kattintással megerősíthesd.',
+    bookingSub: 'Válaszolj néhány kérdésre, és válassz egy időpontot — a foglalási kérésedet elküldjük e-mailben a csapatunknak.',
     labelFullName: 'Teljes név',
     labelCompany: 'Cég',
     labelEmail: 'E-mail',
@@ -128,7 +127,6 @@ const translations = {
     labelProjectType: 'Projekt típusa',
     labelShootLocation: 'Helyszín',
     placeholderLocation: 'Város / helyszín',
-    labelPreferredDate: 'Kívánt dátum',
     labelPreferredTime: 'Kívánt időpont',
     labelShootDuration: 'Fotózás időtartama',
     labelTellUs: 'Mesélj a fotózásról',
@@ -143,9 +141,9 @@ const translations = {
     durationOptHalf: 'Fél nap (4 óra)',
     durationOptFull: 'Egész nap (8 óra)',
     reserveMySlotBtn: 'Időpont lefoglalása',
-    errFillFields: 'Kérjük, add meg a neved, e-mail címed, a dátumot és az időpontot.',
-    errBadDate: 'A megadott dátum/időpont nem tűnik helyesnek — kérjük, ellenőrizd.',
-    bookingOpeningNote: 'Google Naptár megnyitása — kattints a Mentés gombra az időpont megerősítéséhez.'
+    errFillFields: 'Kérjük, add meg a neved, e-mail címed és az időpontot.',
+    errSendFailed: 'Hiba történt a kérésed elküldésekor — próbáld újra, vagy írj nekünk e-mailt közvetlenül.',
+    bookingSentNote: 'Köszönjük! A kérésedet elküldtük e-mailben — hamarosan jelentkezünk.'
   }
 };
 

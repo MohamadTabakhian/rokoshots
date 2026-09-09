@@ -42,55 +42,28 @@ startCycle('bpLeft2', col1Images, 3);
 startCycle('bpRight1', col2Images, 0);
 startCycle('bpRight2', col2Images, 3);
 
-// Reservation form — builds a pre-filled Google Calendar event and opens it
+// Reservation form — sends the requested slot straight to us by email
 const bookingForm = document.getElementById('bookingForm');
 const bookingNote = document.getElementById('bookingNote');
-
-function pad(n){ return n < 10 ? '0' + n : String(n); }
-function toGCalUTC(date){
-  return date.getUTCFullYear() + pad(date.getUTCMonth() + 1) + pad(date.getUTCDate()) +
-    'T' + pad(date.getUTCHours()) + pad(date.getUTCMinutes()) + '00Z';
-}
+const reserveBtn = bookingForm.querySelector('.reserve-btn');
 
 bookingForm.addEventListener('submit', (e) => {
   e.preventDefault();
   const data = new FormData(bookingForm);
   const name = data.get('name').trim();
   const email = data.get('email').trim();
-  const dateVal = data.get('date');
   const timeVal = data.get('time');
 
-  if(!name || !email || !dateVal || !timeVal){
+  if(!name || !email || !timeVal){
     bookingNote.textContent = RokoI18n.t('errFillFields');
     bookingNote.classList.add('error');
     return;
   }
 
   const durationHours = Number(data.get('duration')) || 1;
-  const start = new Date(`${dateVal}T${timeVal}`);
-  if(isNaN(start.getTime())){
-    bookingNote.textContent = RokoI18n.t('errBadDate');
-    bookingNote.classList.add('error');
-    return;
-  }
-  const end = new Date(start.getTime() + durationHours * 3600 * 1000);
 
-  const title = `RokoShots Shoot — ${name}`;
-  const details = [
-    `Project type: ${data.get('projectType')}`,
-    `Company: ${data.get('company') || '—'}`,
-    `Contact: ${email}${data.get('phone') ? ' / ' + data.get('phone') : ''}`,
-    `Duration: ${durationHours}h`,
-    `Details: ${data.get('message') || '—'}`
-  ].join('\n');
-  const location = data.get('location') || '';
-
-  const url = 'https://calendar.google.com/calendar/render'
-    + '?action=TEMPLATE'
-    + '&text=' + encodeURIComponent(title)
-    + '&dates=' + toGCalUTC(start) + '/' + toGCalUTC(end)
-    + '&details=' + encodeURIComponent(details)
-    + '&location=' + encodeURIComponent(location);
+  bookingNote.classList.remove('error');
+  reserveBtn.disabled = true;
 
   fetch('/api/bookings', {
     method: 'POST',
@@ -100,15 +73,23 @@ bookingForm.addEventListener('submit', (e) => {
       phone: data.get('phone'),
       company: data.get('company'),
       projectType: data.get('projectType'),
-      location,
-      date: dateVal,
+      location: data.get('location'),
       time: timeVal,
       duration: durationHours,
       message: data.get('message')
     })
-  }).catch(() => {}); // best-effort — calendar link still opens either way
-
-  bookingNote.classList.remove('error');
-  bookingNote.textContent = RokoI18n.t('bookingOpeningNote');
-  window.open(url, '_blank');
+  })
+    .then((res) => {
+      if(!res.ok) throw new Error('Request failed');
+      bookingNote.classList.remove('error');
+      bookingNote.textContent = RokoI18n.t('bookingSentNote');
+      bookingForm.reset();
+    })
+    .catch(() => {
+      bookingNote.textContent = RokoI18n.t('errSendFailed');
+      bookingNote.classList.add('error');
+    })
+    .finally(() => {
+      reserveBtn.disabled = false;
+    });
 });

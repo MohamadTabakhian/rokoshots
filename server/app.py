@@ -37,7 +37,6 @@ def send_booking_email(data):
                 f"Company: {data.get('company') or '—'}",
                 f"Project type: {data.get('projectType') or '—'}",
                 f"Location: {data.get('location') or '—'}",
-                f"Date: {data['date']}",
                 f"Time: {data['time']}",
                 f"Duration: {data.get('duration') or 1}h",
                 "",
@@ -65,7 +64,6 @@ def get_db():
             company TEXT,
             project_type TEXT,
             location TEXT,
-            shoot_date TEXT NOT NULL,
             shoot_time TEXT NOT NULL,
             duration_hours INTEGER,
             message TEXT
@@ -74,7 +72,7 @@ def get_db():
     return conn
 
 
-REQUIRED_FIELDS = ("name", "email", "date", "time")
+REQUIRED_FIELDS = ("name", "email", "time")
 
 
 @app.post("/api/bookings")
@@ -95,8 +93,8 @@ def create_booking():
         cur = conn.execute(
             """INSERT INTO bookings
                (created_at, name, email, phone, company, project_type,
-                location, shoot_date, shoot_time, duration_hours, message)
-               VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)""",
+                location, shoot_time, duration_hours, message)
+               VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)""",
             (
                 datetime.now(timezone.utc).isoformat(),
                 str(data["name"]).strip(),
@@ -105,7 +103,6 @@ def create_booking():
                 str(data.get("company", "")).strip(),
                 str(data.get("projectType", "")).strip(),
                 str(data.get("location", "")).strip(),
-                str(data["date"]).strip(),
                 str(data["time"]).strip(),
                 duration,
                 str(data.get("message", "")).strip(),

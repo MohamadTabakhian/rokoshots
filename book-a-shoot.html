@@ -69,7 +69,7 @@
 
     <div class="booking-form-card">
       <h2 data-i18n="reserveYourTime">Reserve Your Time</h2>
-      <p class="booking-sub" data-i18n="bookingSub">Answer a few questions and pick a slot — we'll open Google Calendar with everything pre-filled so you can confirm in one click.</p>
+      <p class="booking-sub" data-i18n="bookingSub">Answer a few questions and pick a slot — we'll email your reservation request straight to our team.</p>
 
       <form id="bookingForm">
         <div class="bf-row">
@@ -113,23 +113,18 @@
 
         <div class="bf-row">
           <div class="bf-field">
-            <label data-i18n="labelPreferredDate">Preferred Date</label>
-            <input type="date" name="date" required>
-          </div>
-          <div class="bf-field">
             <label data-i18n="labelPreferredTime">Preferred Time</label>
             <input type="time" name="time" required>
           </div>
-        </div>
-
-        <div class="bf-field">
-          <label data-i18n="labelShootDuration">Shoot Duration</label>
-          <select name="duration">
-            <option value="1" data-i18n="durationOpt1">1 hour</option>
-            <option value="2" data-i18n="durationOpt2">2 hours</option>
-            <option value="4" data-i18n="durationOptHalf">Half day (4 hours)</option>
-            <option value="8" data-i18n="durationOptFull">Full day (8 hours)</option>
-          </select>
+          <div class="bf-field">
+            <label data-i18n="labelShootDuration">Shoot Duration</label>
+            <select name="duration">
+              <option value="1" data-i18n="durationOpt1">1 hour</option>
+              <option value="2" data-i18n="durationOpt2">2 hours</option>
+              <option value="4" data-i18n="durationOptHalf">Half day (4 hours)</option>
+              <option value="8" data-i18n="durationOptFull">Full day (8 hours)</option>
+            </select>
+          </div>
         </div>
 
         <div class="bf-field">
