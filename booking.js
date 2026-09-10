@@ -52,9 +52,8 @@ bookingForm.addEventListener('submit', (e) => {
   const data = new FormData(bookingForm);
   const name = data.get('name').trim();
   const email = data.get('email').trim();
-  const timeVal = data.get('time');
 
-  if(!name || !email || !timeVal){
+  if(!name || !email){
     bookingNote.textContent = RokoI18n.t('errFillFields');
     bookingNote.classList.add('error');
     return;
@@ -74,7 +73,6 @@ bookingForm.addEventListener('submit', (e) => {
       company: data.get('company'),
       projectType: data.get('projectType'),
       location: data.get('location'),
-      time: timeVal,
       duration: durationHours,
       message: data.get('message')
     })

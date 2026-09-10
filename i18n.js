@@ -55,7 +55,6 @@ const translations = {
     labelProjectType: 'Project Type',
     labelShootLocation: 'Shoot Location',
     placeholderLocation: 'City / venue',
-    labelPreferredTime: 'Preferred Time',
     labelShootDuration: 'Shoot Duration',
     labelTellUs: 'Tell us about the shoot',
     placeholderMessage: 'What are we shooting, how many dishes/rooms/spaces, any deadlines...',
@@ -69,7 +68,7 @@ const translations = {
     durationOptHalf: 'Half day (4 hours)',
     durationOptFull: 'Full day (8 hours)',
     reserveMySlotBtn: 'Reserve My Slot',
-    errFillFields: 'Please fill in your name, email and time.',
+    errFillFields: 'Please fill in your name and email.',
     errSendFailed: "Something went wrong sending your request — please try again or email us directly.",
     bookingSentNote: "Thanks! Your request has been emailed to us — we'll get back to you shortly."
   },
@@ -127,7 +126,6 @@ const translations = {
     labelProjectType: 'Projekt típusa',
     labelShootLocation: 'Helyszín',
     placeholderLocation: 'Város / helyszín',
-    labelPreferredTime: 'Kívánt időpont',
     labelShootDuration: 'Fotózás időtartama',
     labelTellUs: 'Mesélj a fotózásról',
     placeholderMessage: 'Mit fotózunk, hány fogás/szoba/tér, van-e határidő...',
@@ -141,7 +139,7 @@ const translations = {
     durationOptHalf: 'Fél nap (4 óra)',
     durationOptFull: 'Egész nap (8 óra)',
     reserveMySlotBtn: 'Időpont lefoglalása',
-    errFillFields: 'Kérjük, add meg a neved, e-mail címed és az időpontot.',
+    errFillFields: 'Kérjük, add meg a neved és e-mail címed.',
     errSendFailed: 'Hiba történt a kérésed elküldésekor — próbáld újra, vagy írj nekünk e-mailt közvetlenül.',
     bookingSentNote: 'Köszönjük! A kérésedet elküldtük e-mailben — hamarosan jelentkezünk.'
   }

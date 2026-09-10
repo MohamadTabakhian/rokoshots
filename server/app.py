@@ -37,7 +37,6 @@ def send_booking_email(data):
                 f"Company: {data.get('company') or '—'}",
                 f"Project type: {data.get('projectType') or '—'}",
                 f"Location: {data.get('location') or '—'}",
-                f"Time: {data['time']}",
                 f"Duration: {data.get('duration') or 1}h",
                 "",
                 "Details:",
@@ -72,7 +71,7 @@ def get_db():
     return conn
 
 
-REQUIRED_FIELDS = ("name", "email", "time")
+REQUIRED_FIELDS = ("name", "email")
 
 
 @app.post("/api/bookings")
@@ -103,7 +102,7 @@ def create_booking():
                 str(data.get("company", "")).strip(),
                 str(data.get("projectType", "")).strip(),
                 str(data.get("location", "")).strip(),
-                str(data["time"]).strip(),
+                str(data.get("time", "")).strip(),
                 duration,
                 str(data.get("message", "")).strip(),
             ),
