@@ -9,46 +9,7 @@ from flask import Flask, request, jsonify
 
 DB_PATH = Path(__file__).parent / "bookings.db"
 
-SMTP_HOST = os.environ.get("SMTP_HOST", "smtp.gmail.com")
-SMTP_PORT = int(os.environ.get("SMTP_PORT", "587"))
-SMTP_USER = os.environ.get("SMTP_USER")
-SMTP_PASSWORD = os.environ.get("SMTP_PASSWORD")
-NOTIFY_EMAIL = os.environ.get("NOTIFY_EMAIL", "info@rokoshots.hu")
-
 app = Flask(__name__)
-
-
-def send_booking_email(data):
-    if not SMTP_USER or not SMTP_PASSWORD:
-        app.logger.warning("SMTP_USER/SMTP_PASSWORD not set — skipping booking email")
-        return
-
-    msg = EmailMessage()
-    msg["Subject"] = f"New Shoot Booking — {data['name']}"
-    msg["From"] = SMTP_USER
-    msg["To"] = NOTIFY_EMAIL
-    msg["Reply-To"] = data["email"]
-    msg.set_content(
-        "\n".join(
-            [
-                f"Name: {data['name']}",
-                f"Email: {data['email']}",
-                f"Phone: {data.get('phone') or '—'}",
-                f"Company: {data.get('company') or '—'}",
-                f"Project type: {data.get('projectType') or '—'}",
-                f"Location: {data.get('location') or '—'}",
-                f"Duration: {data.get('duration') or 1}h",
-                "",
-                "Details:",
-                data.get("message") or "—",
-            ]
-        )
-    )
-
-    with smtplib.SMTP(SMTP_HOST, SMTP_PORT, timeout=10) as server:
-        server.starttls()
-        server.login(SMTP_USER, SMTP_PASSWORD)
-        server.send_message(msg)
 
 
 def get_db():
@@ -63,6 +24,7 @@ def get_db():
             company TEXT,
             project_type TEXT,
             location TEXT,
+            shoot_date TEXT NOT NULL,
             shoot_time TEXT NOT NULL,
             duration_hours INTEGER,
             message TEXT
@@ -72,6 +34,45 @@ def get_db():
 
 
 REQUIRED_FIELDS = ("name", "email")
+
+
+def send_notification_email(booking):
+    host = os.environ.get("SMTP_HOST", "smtp.gmail.com")
+    port = int(os.environ.get("SMTP_PORT", "587"))
+    user = os.environ.get("SMTP_USER")
+    password = os.environ.get("SMTP_PASSWORD")
+    notify_to = os.environ.get("NOTIFY_EMAIL")
+
+    if not all([user, password, notify_to]):
+        print("Email not sent: SMTP env vars missing")
+        return
+
+    msg = EmailMessage()
+    msg["Subject"] = f"New shoot reservation request from {booking['name']}"
+    msg["From"] = user
+    msg["To"] = notify_to
+    msg["Reply-To"] = booking["email"]
+    msg.set_content(
+        f"Name: {booking['name']}\n"
+        f"Email: {booking['email']}\n"
+        f"Phone: {booking['phone']}\n"
+        f"Company: {booking['company']}\n"
+        f"Project type: {booking['project_type']}\n"
+        f"Location: {booking['location']}\n"
+        f"Date: {booking['shoot_date']}\n"
+        f"Time: {booking['shoot_time']}\n"
+        f"Duration: {booking['duration_hours']} hour(s)\n"
+        f"Message: {booking['message']}\n"
+    )
+
+    try:
+        with smtplib.SMTP(host, port, timeout=10) as server:
+            server.starttls()
+            server.login(user, password)
+            server.send_message(msg)
+        print(f"Email sent successfully to {notify_to}")
+    except Exception as exc:
+        print(f"Failed to send notification email: {exc}")
 
 
 @app.post("/api/bookings")
@@ -87,32 +88,43 @@ def create_booking():
     except (TypeError, ValueError):
         duration = 1
 
+    booking = {
+        "name": str(data["name"]).strip(),
+        "email": str(data["email"]).strip(),
+        "phone": str(data.get("phone", "")).strip(),
+        "company": str(data.get("company", "")).strip(),
+        "project_type": str(data.get("projectType", "")).strip(),
+        "location": str(data.get("location", "")).strip(),
+        "shoot_date": str(data.get("date", "")).strip(),
+        "shoot_time": str(data.get("time", "")).strip(),
+        "duration_hours": duration,
+        "message": str(data.get("message", "")).strip(),
+    }
+
     conn = get_db()
     with conn:
         cur = conn.execute(
             """INSERT INTO bookings
-               (created_at, name, email, phone, company, project_type,
-                location, shoot_time, duration_hours, message)
-               VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)""",
+                (created_at, name, email, phone, company, project_type,
+                 location, shoot_date, shoot_time, duration_hours, message)
+                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)""",
             (
                 datetime.now(timezone.utc).isoformat(),
-                str(data["name"]).strip(),
-                str(data["email"]).strip(),
-                str(data.get("phone", "")).strip(),
-                str(data.get("company", "")).strip(),
-                str(data.get("projectType", "")).strip(),
-                str(data.get("location", "")).strip(),
-                str(data.get("time", "")).strip(),
-                duration,
-                str(data.get("message", "")).strip(),
+                booking["name"],
+                booking["email"],
+                booking["phone"],
+                booking["company"],
+                booking["project_type"],
+                booking["location"],
+                booking["shoot_date"],
+                booking["shoot_time"],
+                booking["duration_hours"],
+                booking["message"],
             ),
         )
     conn.close()
 
-    try:
-        send_booking_email(data)
-    except Exception:
-        app.logger.exception("Failed to send booking notification email")
+    send_notification_email(booking)
 
     return jsonify(status="ok", id=cur.lastrowid), 201
 
