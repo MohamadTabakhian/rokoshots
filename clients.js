@@ -31,6 +31,7 @@ const pool = [
   'avalon3.jpeg', 'avalon4.jpeg',
   'gemini1.jpg', 'gemini2.jpg',
   'gemini3.jpg', 'gemini4.jpg',
+  '22-1.jpg','22-2.jpg','22-3.jpg','22-4.jpg','22-5.jpg',
   '42-4.JPG', '42-1.JPG',
   '42-2.JPG', '42-3.JPG',
   'pizza1.JPG','pizza2.JPG','pizza3.JPG','pizza4.JPG',
@@ -51,7 +52,7 @@ const pool = [
 const clients = [];
 const names = [
   'Starbucks', 'Al Habtoor Palace', 'Velvet Bar & Cafe', 'Avalon Hotel & Spa',
-  'Gemini Bar', '42 Restaurant (Michelin star)', 'PizzaMe', 'SkyRose Bar', 'Cortez Restaurant', 'Simon’s burger',
+  'Gemini Bar', '22 The Club Avalon' ,'42 Restaurant (Michelin star)', 'PizzaMe', 'SkyRose Bar', 'Cortez Restaurant', 'Simon’s burger',
   'Marriott Hotel ', 'The Moss','Tenebris vodka','Cafe Muse', 'Valley Budapest', 'Sauska Tokaj','Avalon Yacht', 'Infinity Hotel','Furia Restaurant'
 ];
 // Photo counts per client, in the same order as `names` — matches how each
@@ -66,10 +67,20 @@ names.forEach((name, i) => {
   poolOffset += count;
 });
 
+// Grid thumbnails and lightbox both use pre-optimized copies (see optimized/thumb
+// and optimized/full) instead of the multi-MB originals — those stay on disk for
+// print/archival use but are far too heavy to serve directly on page load.
+function thumbSrc(name){
+  return `optimized/thumb/${name.replace(/\.[^.]+$/, '')}.jpg`;
+}
+function fullSrc(name){
+  return `optimized/full/${name.replace(/\.[^.]+$/, '')}.jpg`;
+}
+
 function rowMarkup(client, clientIndex){
   const photosHtml = client.photos.map((src, i) => `
       <button type="button" class="cp-photo" data-client="${clientIndex}" data-photo="${i}">
-        <img src="${src}" alt="${client.name}">
+        <img src="${thumbSrc(src)}" alt="${client.name}" loading="lazy" decoding="async">
       </button>`).join('');
   const logoHtml = client.logo
     ? `<img src="${client.logo}" alt="${client.name} logo" class="client-logo">`
@@ -139,7 +150,7 @@ function updateClientLightbox(){
   clImg.style.animation = 'none';
   clImg.offsetHeight; // restart animation
   clImg.style.animation = '';
-  clImg.src = activeClient.photos[activePhoto];
+  clImg.src = fullSrc(activeClient.photos[activePhoto]);
   clName.textContent = activeClient.name;
   clCount.textContent = `${activePhoto + 1} / ${activeClient.photos.length}`;
 }

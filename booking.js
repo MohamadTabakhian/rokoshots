@@ -35,7 +35,7 @@ function startCycle(tileId, images, startIndex){
     img.offsetHeight; // force reflow to restart animation
     img.style.animation = '';
     img.src = images[i];
-  }, 10000);
+  }, 10 000);
 }
 startCycle('bpLeft1', col1Images, 0);
 startCycle('bpLeft2', col1Images, 3);
