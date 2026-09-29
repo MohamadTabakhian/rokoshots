@@ -26,7 +26,8 @@ mobileMenu.querySelectorAll('a').forEach(a => {
 const pool = [
   'star1.jpg', 'star2.jpg', 'star3.jpg', 'star4.jpg',
   'habtoor1.JPG', 'habtoor2.JPG',
-  'habtoor3.JPG', 'habtoor4.JPG', 'velvet1.jpg', 'velvet2.jpg', 'velvet3.jpg', 'velvet4.jpg',
+  'habtoor3.JPG', 'habtoor4.JPG', 
+  'velvet1.jpg', 'velvet2.jpg', 'velvet3.jpg', 'velvet4.jpg',
   'avalon1.jpeg', 'avalon2.jpeg',
   'avalon3.jpeg', 'avalon4.jpeg',
   'gemini1.jpg', 'gemini2.jpg',
@@ -52,12 +53,12 @@ const pool = [
 const clients = [];
 const names = [
   'Starbucks', 'Al Habtoor Palace', 'Velvet Bar & Cafe', 'Avalon Hotel & Spa',
-  'Gemini Bar', '22 The Club Avalon' ,'42 Restaurant (Michelin star)', 'PizzaMe', 'SkyRose Bar', 'Cortez Restaurant', 'Simon’s burger',
+  'Gemini Bar', 'The Club Avalon' ,'42 Restaurant (Michelin star)', 'PizzaMe', 'SkyRose Bar', 'Cortez Restaurant', 'Simon’s burger',
   'Marriott Hotel ', 'The Moss','Tenebris vodka','Cafe Muse', 'Valley Budapest', 'Sauska Tokaj','Avalon Yacht', 'Infinity Hotel','Furia Restaurant'
 ];
 // Photo counts per client, in the same order as `names` — matches how each
 // client's photos are grouped consecutively in `pool` above.
-const photoCounts = [4, 4, 4, 4, 4, 5, 4, 4, 4, 1, 5, 5, 5, 4, 5, 4, 4, 4, 4];
+const photoCounts = [4, 4, 4, 4, 4, 5, 4, 4, 4, 4, 1, 5, 5, 5, 4, 5, 4, 4, 4, 4];
 // I Have too add other Logos
 const logos = { 'Starbucks': 'starbucks-logo.svg', 'Mariott Hotel': 'marriott-logo.svg' };
 let poolOffset = 0;
