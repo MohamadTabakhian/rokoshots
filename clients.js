@@ -31,7 +31,7 @@ const pool = [
   'avalon3.jpeg', 'avalon4.jpeg',
   'gemini1.jpg', 'gemini2.jpg',
   'gemini3.jpg', 'gemini4.jpg',
-  '22-1.jpg','22-2.jpg','22-3.jpg','22-4.jpg','22-5.jpg',
+  'avalon22-1.jpg','avalon22-2.jpg','avalon22-3.jpg','avalon22-4.jpg','avalon22-5.jpg',
   '42-4.JPG', '42-1.JPG',
   '42-2.JPG', '42-3.JPG',
   'pizza1.JPG','pizza2.JPG','pizza3.JPG','pizza4.JPG',
