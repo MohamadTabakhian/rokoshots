@@ -57,7 +57,7 @@ const names = [
 ];
 // Photo counts per client, in the same order as `names` — matches how each
 // client's photos are grouped consecutively in `pool` above.
-const photoCounts = [4, 4, 4, 4, 4, 4, 4, 4, 4, 1, 5, 5, 5, 4, 5, 4, 4, 4, 4];
+const photoCounts = [4, 4, 4, 4, 4, 5, 4, 4, 4, 1, 5, 5, 5, 4, 5, 4, 4, 4, 4];
 // I Have too add other Logos
 const logos = { 'Starbucks': 'starbucks-logo.svg', 'Mariott Hotel': 'marriott-logo.svg' };
 let poolOffset = 0;
