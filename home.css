@@ -771,6 +771,113 @@ a.footer-newsletter-btn{
 }
 .contact-icon svg{ width:18px; height:18px; }
 
+/* ===== SCROLL-LINKED ANIMATIONS =====
+   Base state everywhere below is the normal, fully-visible appearance.
+   Enhancements only kick in inside @supports — unsupported browsers,
+   or a JS failure, simply show the content normally. */
+
+/* 1. Hero photo parallax — drifts and settles as you scroll past it */
+@supports (animation-timeline: view()){
+  .rk-hero-photo img{
+    scale:1.12;
+    translate:0 0%;
+    animation: rk-hero-parallax linear;
+    animation-timeline: view();
+  }
+  @keyframes rk-hero-parallax{
+    to{ scale:1; translate:0 12%; }
+  }
+}
+
+/* 2. Work card reveal — frame opens from the bottom, image settles in */
+@supports (animation-timeline: view()){
+  .rk-work-card-frame{
+    clip-path: inset(100% 0 0 0);
+    animation: rk-card-open linear forwards;
+    animation-timeline: view();
+    animation-range: entry 0% entry 85%;
+  }
+  .rk-work-card-frame img{
+    scale:1.15;
+    animation: rk-card-img-settle linear forwards;
+    animation-timeline: view();
+    animation-range: entry 0% entry 85%;
+  }
+  @keyframes rk-card-open{ to{ clip-path: inset(0 0 0 0); } }
+  @keyframes rk-card-img-settle{ to{ scale:1; } }
+}
+/* Slight row stagger — only meaningful once the grid is actually 3 columns */
+@media (min-width:1000px){
+  @supports (animation-timeline: view()){
+    .rk-work-card[data-col="2"] .rk-work-card-frame,
+    .rk-work-card[data-col="2"] .rk-work-card-frame img{
+      animation-range: entry 6% entry 91%;
+    }
+    .rk-work-card[data-col="3"] .rk-work-card-frame,
+    .rk-work-card[data-col="3"] .rk-work-card-frame img{
+      animation-range: entry 12% entry 97%;
+    }
+  }
+}
+
+/* 3. About teaser — word-by-word highlight (words split in home.js) */
+@supports (animation-timeline: view()){
+  .rk-about-teaser-text{
+    view-timeline-name: --rk-about-progress;
+    view-timeline-axis: block;
+  }
+  .rk-about-teaser-text .rk-word{
+    opacity:.22;
+    animation: rk-word-reveal linear forwards;
+    animation-timeline: --rk-about-progress;
+    animation-range:
+      calc(var(--i, 0) * (100% / var(--n, 1)))
+      calc((var(--i, 0) + 1) * (100% / var(--n, 1)));
+  }
+  @keyframes rk-word-reveal{ to{ opacity:1; } }
+}
+
+/* 4. Gallery column parallax — desktop/tablet 3-col grid only */
+@media (min-width:640px){
+  @supports (animation-timeline: view()){
+    .rk-gallery-item{
+      translate:0 8px;
+      animation: rk-gallery-parallax-side linear;
+      animation-timeline: view();
+    }
+    .rk-gallery-item:nth-child(3n+2){
+      translate:0 20px;
+      animation-name: rk-gallery-parallax-mid;
+    }
+    @keyframes rk-gallery-parallax-side{ to{ translate:0 -8px; } }
+    @keyframes rk-gallery-parallax-mid{ to{ translate:0 -20px; } }
+  }
+}
+
+/* 5. Soft fade-up for secondary content — classes toggled once by home.js */
+.rk-fade-up{
+  opacity:0;
+  translate:0 26px;
+  transition:opacity 1s ease, translate 1s ease;
+}
+.rk-fade-up-visible{
+  opacity:1;
+  translate:0 0;
+}
+
 @media (prefers-reduced-motion: reduce){
   .home-body *{ animation-duration:.01ms !important; transition-duration:.01ms !important; }
+
+  .rk-hero-photo img,
+  .rk-work-card-frame,
+  .rk-work-card-frame img,
+  .rk-gallery-item,
+  .rk-about-teaser-text .rk-word,
+  .rk-fade-up{
+    animation:none !important;
+    clip-path:none !important;
+    scale:1 !important;
+    translate:none !important;
+    opacity:1 !important;
+  }
 }

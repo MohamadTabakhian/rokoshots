@@ -52,15 +52,22 @@ const workGrid = document.getElementById('workGrid');
 let activeFilter = null;
 
 function renderWorkGrid(){
-  workGrid.innerHTML = workProjects.map((p, i) => `
-    <div class="rk-work-card${activeFilter && p.filter !== activeFilter ? ' rk-hidden' : ''}" data-project="${i}">
+  // Column index is tracked over visible cards only, so the row-stagger
+  // animation stays aligned to the actual 3-col grid position when filtered.
+  let visibleIndex = 0;
+  workGrid.innerHTML = workProjects.map((p, i) => {
+    const isHidden = activeFilter && p.filter !== activeFilter;
+    const col = isHidden ? null : (visibleIndex++ % 3) + 1;
+    return `
+    <div class="rk-work-card${isHidden ? ' rk-hidden' : ''}" data-project="${i}"${col ? ` data-col="${col}"` : ''}>
       <div class="rk-work-card-frame">
         <img src="${fullSrc(p.photos[0])}" alt="${p.title}" loading="lazy">
       </div>
       <div class="rk-work-meta">${p.num} &middot; <span data-i18n="${p.categoryKey}">${RokoI18n.t(p.categoryKey)}</span></div>
       <div class="rk-work-name">${p.title}</div>
     </div>
-  `).join('');
+  `;
+  }).join('');
 }
 renderWorkGrid();
 
@@ -74,6 +81,55 @@ document.getElementById('workFilters').addEventListener('click', (e) => {
   });
   renderWorkGrid();
 });
+
+// About teaser — split into words for the scroll-linked highlight effect.
+// Re-run after langchange, since i18n resets textContent and wipes the spans.
+const aboutTeaserText = document.querySelector('.rk-about-teaser-text');
+function splitAboutTeaserWords(){
+  if(!aboutTeaserText) return;
+  const parts = [...aboutTeaserText.children]; // the <span> and <em>
+  const total = parts.reduce((sum, part) => sum + part.textContent.trim().split(/\s+/).length, 0);
+  let i = 0;
+  parts.forEach(part => {
+    const words = part.textContent.trim().split(/\s+/);
+    part.textContent = '';
+    words.forEach(word => {
+      const span = document.createElement('span');
+      span.className = 'rk-word';
+      span.textContent = word;
+      span.style.setProperty('--i', i);
+      span.style.setProperty('--n', total);
+      part.appendChild(span);
+      part.appendChild(document.createTextNode(' '));
+      i++;
+    });
+  });
+}
+// i18n's own initial translation pass also lands on DOMContentLoaded (see i18n.js),
+// so defer the first split the same way — otherwise it runs before textContent
+// is set and gets wiped out the moment translations apply.
+if(document.readyState === 'loading'){
+  document.addEventListener('DOMContentLoaded', splitAboutTeaserWords);
+} else {
+  splitAboutTeaserWords();
+}
+
+// Soft fade-up reveal for secondary content — plays once, then stops watching.
+const fadeUpSelectors = '.rk-clients-heading, .rk-client-cloud, .rk-work-title, .rk-testimonials-head, .rk-testimonial, .rk-contact-heading, .rk-contact-info, #rkContactForm, .rk-about-teaser .rk-eyebrow, .rk-about-teaser-link';
+if('IntersectionObserver' in window){
+  const fadeObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if(entry.isIntersecting){
+        entry.target.classList.add('rk-fade-up-visible');
+        fadeObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold:.15 });
+  document.querySelectorAll(fadeUpSelectors).forEach(el => {
+    el.classList.add('rk-fade-up');
+    fadeObserver.observe(el);
+  });
+}
 
 // Plain photo grid — decorative gallery, no captions
 const galleryImages = [
@@ -200,4 +256,5 @@ document.addEventListener('rokoshots:langchange', () => {
   renderClientCloud();
   renderWorkGrid();
   if(activeSet) updateLightbox();
+  splitAboutTeaserWords();
 });
