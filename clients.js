@@ -1,11 +1,3 @@
-// Theme toggle — dots swap the whole page between light and dark
-const themeToggle = document.getElementById('themeToggle');
-const root = document.documentElement;
-themeToggle.addEventListener('click', () => {
-  const isDark = root.getAttribute('data-theme') === 'dark';
-  root.setAttribute('data-theme', isDark ? 'light' : 'dark');
-});
-
 // Mobile menu toggle
 const menuToggle = document.getElementById('menuToggle');
 const mobileMenu = document.getElementById('mobileMenu');

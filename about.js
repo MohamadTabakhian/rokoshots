@@ -1,11 +1,3 @@
-// Theme toggle — dots swap the whole page between light and dark
-const themeToggle = document.getElementById('themeToggle');
-const root = document.documentElement;
-themeToggle.addEventListener('click', () => {
-  const isDark = root.getAttribute('data-theme') === 'dark';
-  root.setAttribute('data-theme', isDark ? 'light' : 'dark');
-});
-
 // Mobile menu toggle
 const menuToggle = document.getElementById('menuToggle');
 const mobileMenu = document.getElementById('mobileMenu');
@@ -60,7 +52,7 @@ function layoutAboutCopy(){
 
   if(splitIndex < paragraphs.length){
     const belowWrap = document.createElement('div');
-    belowWrap.className = 'wrap about-page-copy-below';
+    belowWrap.className = 'rk-wrap about-page-copy-below';
     paragraphs.slice(splitIndex).forEach(p => belowWrap.appendChild(p));
     aboutGrid.after(belowWrap);
   }

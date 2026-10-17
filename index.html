@@ -1,137 +1,201 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="light" data-i18n-title="titleHome">
+<html lang="en" data-i18n-title="titleHome">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>RokoShots</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@400;500;600;700&family=Anton&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="home.css">
 </head>
-<body id="top">
+<body class="home-body" id="top">
 
-<header>
-  <div class="wrap">
-    <a href="#top" class="logo-home">Robin-Kovacs</a>
+<header class="rk-header">
+  <div class="rk-wrap">
+    <a href="#top" class="rk-logo">Rokoshots</a>
 
-    <div class="header-right">
-      <nav>
+    <div class="rk-header-right">
+      <nav class="rk-nav">
         <ul>
-          <li><a href="/clients.html" class="nav-clients" data-i18n="navClients">Clients</a></li>
-          <li><a href="/about.html" class="nav-gallery" data-i18n="navGallery">About</a></li>
+          <li><a href="#work" data-i18n="navWork">Work</a></li>
+          <li><a href="clients.html" data-i18n="navClients">Clients</a></li>
+          <li><a href="about.html" data-i18n="navGallery">About</a></li>
         </ul>
       </nav>
-      <a href="book-a-shoot.html" class="header-cta" data-i18n="headerCta">Book a Shoot</a>
-      <div class="lang-switch" id="langSwitch">
+      <div class="rk-lang lang-switch" id="langSwitch">
         <button type="button" class="active" data-lang="en">En</button>
-        <span class="divider">/</span>
+        <span class="rk-lang-divider">·</span>
         <button type="button" data-lang="hu">Hu</button>
       </div>
-      <button type="button" class="theme-dots" id="themeToggle" aria-label="Toggle light and dark theme" data-i18n-aria-label="ariaToggleTheme">
-        <span></span><span></span>
-      </button>
-      <button type="button" class="menu-toggle" id="menuToggle" aria-label="Open menu" aria-expanded="false" data-i18n-aria-label="ariaOpenMenu">
+      <a href="book-a-shoot.html" class="rk-pill rk-header-cta" data-i18n="btnBookCall">Book a Call</a>
+      <button type="button" class="rk-menu-toggle" id="menuToggle" aria-label="Open menu" aria-expanded="false" data-i18n-aria-label="ariaOpenMenu">
         <span></span><span></span><span></span>
       </button>
     </div>
   </div>
 
-  <div class="mobile-menu" id="mobileMenu">
+  <div class="rk-mobile-menu" id="mobileMenu">
     <nav>
       <ul>
-        <li><a href="clients.html" class="nav-clients" data-i18n="navClients">Clients</a></li>
-        <li><a href="about.html" class="nav-gallery" data-i18n="navGallery">About</a></li>
+        <li><a href="#work" data-i18n="navWork">Work</a></li>
+        <li><a href="clients.html" data-i18n="navClients">Clients</a></li>
+        <li><a href="about.html" data-i18n="navGallery">About</a></li>
       </ul>
     </nav>
-    <a href="book-a-shoot.html" class="header-cta mobile-cta" data-i18n="headerCta">Book a Shoot</a>
-    <div class="lang-switch mobile-lang" id="langSwitchMobile">
+    <a href="book-a-shoot.html" class="rk-pill" data-i18n="btnBookCall">Book a Call</a>
+    <div class="rk-lang lang-switch" id="langSwitchMobile">
       <button type="button" class="active" data-lang="en">En</button>
-      <span class="divider">/</span>
+      <span class="rk-lang-divider">·</span>
       <button type="button" data-lang="hu">Hu</button>
     </div>
   </div>
 </header>
 
-<section class="hero">
-  <div class="wrap">
-    <h1 class="hero-name">RokoShots</h1>
-
-    <div class="hero-columns">
-      <div class="hero-col" id="col1">
-        <img src="A1.jpg" alt="">
+<section class="rk-hero">
+  <div class="rk-wrap rk-hero-grid">
+    <div class="rk-hero-copy">
+      <p class="rk-eyebrow" data-i18n="homeEyebrow">Photo &amp; Film for Luxury Hotels and Restaurants</p>
+      <h1 class="rk-hero-title">
+        <span data-i18n="homeTitleLine1">Make your hotel look as good online</span>
+        <em data-i18n="homeTitleLine2">as it feels in person.</em>
+      </h1>
+      <p class="rk-hero-sub" data-i18n="homeSubtitle">Cinematic photos and reels for premium hotels, restaurants and bars, so guests feel the place before they arrive.</p>
+      <div class="rk-hero-actions">
+        <a href="book-a-shoot.html" class="rk-pill" data-i18n="btnBookCall">Book a Call</a>
+        <a href="#work" class="rk-link-underline" data-i18n="btnSeeWork">See the Work</a>
       </div>
-      <div class="hero-col" id="col2">
-        <img src="A7.jpg" alt="">
+    </div>
+    <div class="rk-hero-photo">
+      <img src="optimized/full/moss1.jpg" alt="Robin Kovács on location for a RokoShots client">
+    </div>
+  </div>
+</section>
+
+<section class="rk-clients" aria-label="Clients" data-i18n-aria-label="clientsMarqueeAriaLabel">
+  <div class="rk-wrap">
+    <p class="rk-eyebrow" data-i18n="clientsEyebrow">Clients</p>
+    <h2 class="rk-clients-heading" data-i18n="clientsTrustedHeading">Trusted by hotels, restaurants and brands</h2>
+    <div class="rk-client-cloud" id="clientCloud"></div>
+  </div>
+</section>
+
+<section class="rk-work" id="work">
+  <div class="rk-wrap">
+    <div class="rk-work-head">
+      <h2 class="rk-work-title" data-i18n="workTitle">Selected work</h2>
+      <div class="rk-work-filters" id="workFilters">
+        <button type="button" data-filter="hotels" data-i18n="workFilterHotels">Hotels</button>
+        <span class="rk-dot">&middot;</span>
+        <button type="button" data-filter="dining" data-i18n="workFilterDining">Dining</button>
+        <span class="rk-dot">&middot;</span>
+        <button type="button" data-filter="drinks" data-i18n="workFilterDrinks">Drinks</button>
+      </div>
+    </div>
+
+    <div class="rk-work-grid" id="workGrid"></div>
+  </div>
+</section>
+
+<section class="rk-gallery">
+  <div class="rk-wrap">
+    <div class="rk-gallery-grid" id="galleryGrid"></div>
+  </div>
+</section>
+
+<section class="rk-testimonials">
+  <div class="rk-wrap">
+    <div class="rk-testimonials-head">
+      <p class="rk-eyebrow" data-i18n="testimonialsEyebrow">What Clients Say</p>
+    </div>
+    <div class="rk-testimonial-grid">
+      <div class="rk-testimonial">
+        <span class="rk-quote-mark">&ldquo;</span>
+        <p class="rk-quote-text">Working with Robin has been an absolute game-changer for Furia. As the head chef, I know the importance of showcasing our dishes in a way that captures their essence and draws customers in. Robin&rsquo;s photography brought our food to life, highlighting the flavors and artistry we pour into every plate. As we launched the restaurant, his stunning visuals played a key role in defining our brand and showcasing our menu. If you&rsquo;re looking for a photographer who is fun to work with and truly understands how to help your business grow, Robin is the one to call.</p>
+        <span class="rk-quote-name">Daduna Ghlonti</span>
+        <span class="rk-quote-role">Head Chef at Furia</span>
+      </div>
+      <div class="rk-testimonial">
+        <span class="rk-quote-mark">&ldquo;</span>
+        <p class="rk-quote-text">Robin has not just met our expectations, he has remarkably exceeded them. What sets Robin apart from other talented photographers is his outstanding creativity. He brings fresh ideas for campaigns that are not just eye-catching but also perfectly aligned with our goals. Robin is an absolute pleasure to work with. He listens, collaborates, and makes everyone around him feel at ease, which is invaluable during hectic shoots. He is not just a photographer, he is a brand-builder, and an invaluable asset to any team.</p>
+        <span class="rk-quote-name">Sabi</span>
+        <span class="rk-quote-role">Chief Operating Officer &amp; Content Manager of Moonlight</span>
+      </div>
+      <div class="rk-testimonial">
+        <span class="rk-quote-mark">&ldquo;</span>
+        <p class="rk-quote-text">Working with Robin has been an absolute pleasure. His passion for photography shines through in every shot, and his attention to detail is truly remarkable. He has a knack for capturing the essence of a moment, creating images that are both beautiful and meaningful. I&rsquo;ve been consistently impressed with his professionalism, creativity, and ability to bring a unique vision to every project. I wouldn&rsquo;t hesitate to recommend Robin to anyone looking for a talented and dedicated photographer. I look forward to collaborating with him again in the future!</p>
+        <span class="rk-quote-name">Manuel Ribis</span>
+        <span class="rk-quote-role">Owner of The Moss</span>
       </div>
     </div>
   </div>
 </section>
 
-<section class="about" id="about">
-  <div class="wrap">
-    <p class="about-tagline" data-i18n="heroTagline">Crafting visuals that turn attention into business wins.</p>
+<section class="rk-about-teaser">
+  <div class="rk-wrap">
+    <p class="rk-eyebrow" data-i18n="aboutTeaserEyebrow">About</p>
+    <p class="rk-about-teaser-text">
+      <span data-i18n="aboutTeaserNormal">I&rsquo;m Robin Kovács. For almost eight years I&rsquo;ve helped hotels and restaurants grow through visuals.</span>
+      <em data-i18n="aboutTeaserItalic">Every project starts with your guests, and I lead each one myself.</em>
+    </p>
+    <a href="about.html" class="rk-link-underline rk-about-teaser-link" data-i18n="aboutReadMore">Read More</a>
   </div>
 </section>
 
-<section class="clients-marquee" aria-label="Clients we've worked with" data-i18n-aria-label="clientsMarqueeAriaLabel">
-  <div class="marquee">
-    <div class="marquee-track" id="clientsMarquee"></div>
-  </div>
-  <div class="clients-marquee-cta">
-    <a href="clients.html" class="see-clients-btn">
-      <span data-i18n="seeAllClientsLabel">See All Clients</span>
-      <span class="see-clients-arrow">&#8594;</span>
-    </a>
-  </div>
-</section>
+<section class="rk-contact">
+  <div class="rk-wrap">
+    <div class="rk-contact-grid">
+      <div class="rk-contact-info">
+        <h2 class="rk-contact-heading">
+          <span data-i18n="contactHeadingNormal">Tell me about</span>
+          <em data-i18n="contactHeadingItalic">your hotel.</em>
+        </h2>
+        <div class="rk-contact-links">
+          <a href="mailto:info@rokoshots.hu">info@rokoshots.hu</a>
+          <a href="tel:+36203128096">+36 20 312 8096</a>
+          <a href="https://www.instagram.com/rokoshots" target="_blank" rel="noopener">Instagram @rokoshots</a>
+        </div>
+      </div>
 
-<section class="projects" id="gallery">
-  <div class="wrap">
-    <h2 class="projects-title" data-i18n="featuredProjectsTitle">Featured Projects</h2>
-  </div>
-
-  <div class="carousel-wrap">
-    <button type="button" class="carousel-arrow left" id="arrowLeft" aria-label="Previous projects" data-i18n-aria-label="ariaPrevProjects">&#8592;</button>
-    <button type="button" class="carousel-arrow right" id="arrowRight" aria-label="Next projects" data-i18n-aria-label="ariaNextProjects">&#8594;</button>
-
-    <div class="projects-track" id="projectsTrack">
-      <!-- project cards injected by script.js -->
+      <form id="rkContactForm">
+        <div class="rk-f-row">
+          <div class="rk-field">
+            <label for="rkName" data-i18n="formLabelName">Name</label>
+            <input type="text" id="rkName" name="name" required>
+          </div>
+          <div class="rk-field">
+            <label for="rkCompany" data-i18n="formLabelCompany">Hotel or Restaurant</label>
+            <input type="text" id="rkCompany" name="company">
+          </div>
+        </div>
+        <div class="rk-field">
+          <label for="rkEmail" data-i18n="formLabelEmail">Email</label>
+          <input type="email" id="rkEmail" name="email" required>
+        </div>
+        <div class="rk-field">
+          <label for="rkMessage" data-i18n="formLabelMessage">Message</label>
+          <textarea id="rkMessage" name="message"></textarea>
+        </div>
+        <div class="rk-form-submit">
+          <button type="submit" class="rk-pill" data-i18n="formSubmitBtn">Book a Call</button>
+        </div>
+        <p class="rk-form-note" id="rkFormNote"></p>
+      </form>
     </div>
   </div>
 </section>
 
-<div class="lightbox" id="lightbox">
-  <button type="button" class="lightbox-close" id="lightboxClose" aria-label="Close" data-i18n-aria-label="ariaLightboxClose">&times;</button>
-  <button type="button" class="lightbox-arrow left" id="lightboxPrev" aria-label="Previous photo" data-i18n-aria-label="ariaLightboxPrev">&#8592;</button>
-  <div class="lightbox-stage">
+<div class="rk-lightbox" id="lightbox">
+  <button type="button" class="rk-lightbox-close" id="lightboxClose" aria-label="Close" data-i18n-aria-label="ariaLightboxClose">&times;</button>
+  <button type="button" class="rk-lightbox-arrow" id="lightboxPrev" aria-label="Previous photo" data-i18n-aria-label="ariaLightboxPrev">&#8592;</button>
+  <div class="rk-lightbox-stage">
     <img id="lightboxImg" src="" alt="">
-    <div class="lightbox-caption" id="lightboxCaption"></div>
+    <div class="rk-lightbox-caption" id="lightboxCaption"></div>
   </div>
-  <button type="button" class="lightbox-arrow right" id="lightboxNext" aria-label="Next photo" data-i18n-aria-label="ariaLightboxNext">&#8594;</button>
+  <button type="button" class="rk-lightbox-arrow" id="lightboxNext" aria-label="Next photo" data-i18n-aria-label="ariaLightboxNext">&#8594;</button>
 </div>
 
-<footer class="site-footer">
-  <div class="footer-grid">
-    <a href="book-a-shoot.html" class="footer-tile">
-      <div class="footer-tile-photo"><img src="/1.jpeg" alt="Contact RokoShots" data-i18n-alt="footerContactAlt"></div>
-      <span class="footer-tile-label" data-i18n="footerContactLabel">Contact Me</span>
-    </a>
-
-    <div class="footer-newsletter">
-      <a href="book-a-shoot.html" class="footer-newsletter-btn" data-i18n="footerReserveBtn">Reserve a Shoot</a>
-    </div>
-
-    <a href="https://www.instagram.com/rokoshots" target="_blank" rel="noopener" class="footer-tile">
-      <div class="footer-tile-photo"><img src="/2.jpg" alt="RokoShots on Instagram" data-i18n-alt="footerInstagramAlt"></div>
-      <span class="footer-tile-label" data-i18n="footerInstagramLabel">Instagram</span>
-    </a>
-  </div>
-
-  <div class="footer-mark">&copy; &#8734; RokoShots</div>
-</footer>
-
 <script src="i18n.js"></script>
-<script src="script.js"></script>
-</body> 
+<script src="home.js"></script>
+</body>
 </html>

@@ -538,7 +538,7 @@ nav a:hover{opacity:.65;}
   text-transform:uppercase;
   text-align:center;
   text-decoration:none;
-  color:var(--red);
+  color:#000;
   cursor:pointer;
   transition:background .3s, transform .2s;
 }

@@ -1,61 +1,60 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="light" data-i18n-title="titleClients">
+<html lang="en" data-i18n-title="titleClients">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Clients — RokoShots</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@400;500;600;700&family=Anton&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="home.css">
 </head>
-<body id="top">
+<body class="home-body" id="top">
 
-<header>
-  <div class="wrap">
-    <a href="index.html#top" class="logo-home">Robin-Kovacs</a>
+<header class="rk-header">
+  <div class="rk-wrap">
+    <a href="index.html" class="rk-logo">Rokoshots</a>
 
-    <div class="header-right">
-      <nav>
+    <div class="rk-header-right">
+      <nav class="rk-nav">
         <ul>
-          <li><a href="clients.html" class="nav-clients" data-i18n="navClients">Clients</a></li>
-          <li><a href="about.html" class="nav-gallery" data-i18n="navGallery">About</a></li>
+          <!-- <li><a href="index.html#work" data-i18n="navWork">Work</a></li> -->
+          <li><a href="clients.html" data-i18n="navClients">Clients</a></li>
+          <li><a href="about.html" data-i18n="navGallery">About</a></li>
         </ul>
       </nav>
-      <a href="book-a-shoot.html" class="header-cta" data-i18n="headerCta">Book a Shoot</a>
-      <div class="lang-switch" id="langSwitch">
+      <div class="rk-lang lang-switch" id="langSwitch">
         <button type="button" class="active" data-lang="en">En</button>
-        <span class="divider">/</span>
+        <span class="rk-lang-divider">·</span>
         <button type="button" data-lang="hu">Hu</button>
       </div>
-      <button type="button" class="theme-dots" id="themeToggle" aria-label="Toggle light and dark theme" data-i18n-aria-label="ariaToggleTheme">
-        <span></span><span></span>
-      </button>
-      <button type="button" class="menu-toggle" id="menuToggle" aria-label="Open menu" aria-expanded="false" data-i18n-aria-label="ariaOpenMenu">
+      <a href="book-a-shoot.html" class="rk-pill rk-header-cta" data-i18n="btnBookCall">Book a Call</a>
+      <button type="button" class="rk-menu-toggle" id="menuToggle" aria-label="Open menu" aria-expanded="false" data-i18n-aria-label="ariaOpenMenu">
         <span></span><span></span><span></span>
       </button>
     </div>
   </div>
 
-  <div class="mobile-menu" id="mobileMenu">
+  <div class="rk-mobile-menu" id="mobileMenu">
     <nav>
       <ul>
-        <li><a href="clients.html" class="nav-clients" data-i18n="navClients">Clients</a></li>
-        <li><a href="about.html" class="nav-gallery" data-i18n="navGallery">About</a></li>
+        <!-- <li><a href="index.html#work" data-i18n="navWork">Work</a></li> -->
+        <li><a href="clients.html" data-i18n="navClients">Clients</a></li>
+        <li><a href="about.html" data-i18n="navGallery">About</a></li>
       </ul>
     </nav>
-    <a href="book-a-shoot.html" class="header-cta mobile-cta" data-i18n="headerCta">Book a Shoot</a>
-    <div class="lang-switch mobile-lang" id="langSwitchMobile">
+    <a href="book-a-shoot.html" class="rk-pill" data-i18n="btnBookCall">Book a Call</a>
+    <div class="rk-lang lang-switch" id="langSwitchMobile">
       <button type="button" class="active" data-lang="en">En</button>
-      <span class="divider">/</span>
+      <span class="rk-lang-divider">·</span>
       <button type="button" data-lang="hu">Hu</button>
     </div>
   </div>
 </header>
 
-<section class="clients-page-title">
-  <div class="wrap">
-    <h1 class="hero-name" data-i18n="clientsHeading">Clients</h1>
+<section class="rk-page-title">
+  <div class="rk-wrap">
+    <h1 class="rk-page-title-text" data-i18n="clientsHeading">Clients</h1>
   </div>
 </section>
 
