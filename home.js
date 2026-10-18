@@ -115,7 +115,7 @@ if(document.readyState === 'loading'){
 }
 
 // Soft fade-up reveal for secondary content — plays once, then stops watching.
-const fadeUpSelectors = '.rk-clients-heading, .rk-client-cloud, .rk-work-title, .rk-testimonials-head, .rk-testimonial, .rk-contact-heading, .rk-contact-info, #rkContactForm, .rk-about-teaser .rk-eyebrow, .rk-about-teaser-link';
+const fadeUpSelectors = '.rk-clients-heading, .rk-client-cloud, .rk-work-title, .ig-card, .rk-testimonials-head, .rk-testimonial, .rk-contact-heading, .rk-contact-info, #rkContactForm, .rk-about-teaser .rk-eyebrow, .rk-about-teaser-link';
 if('IntersectionObserver' in window){
   const fadeObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
@@ -143,6 +143,57 @@ galleryGrid.innerHTML = galleryImages.map((name, i) => `
     <img src="${thumbSrc(name)}" alt="" loading="lazy" decoding="async">
   </button>
 `).join('');
+
+// Instagram widget — static preview of recent posts, each tile links out
+// to the real profile (no post-level API, so there's nothing to embed live)
+const igImages = [
+  'habtoor2','gemini2','velvet1','muse2','moss3','pizza1',
+  'sauska2','cortez3','furia2','tenebris3','merriott2','star3',
+  'sky2','valley4','yacht1'
+];
+const IG_PROFILE_URL = 'https://www.instagram.com/rokoshots';
+const igTrack = document.getElementById('igTrack');
+const igDots = document.getElementById('igDots');
+const igPrev = document.getElementById('igPrev');
+const igNext = document.getElementById('igNext');
+
+igTrack.innerHTML = igImages.map(name => `
+  <a class="ig-post" href="${IG_PROFILE_URL}" target="_blank" rel="noopener">
+    <img src="${thumbSrc(name)}" alt="" loading="lazy" decoding="async">
+  </a>
+`).join('');
+igDots.innerHTML = igImages.map((_, i) => `
+  <button type="button" class="ig-dot${i === 0 ? ' active' : ''}" data-index="${i}" aria-label="Go to post ${i + 1}"></button>
+`).join('');
+
+const igPosts = Array.from(igTrack.children);
+const igDotEls = Array.from(igDots.children);
+
+function updateIgActiveDot(){
+  const trackLeft = igTrack.getBoundingClientRect().left;
+  let closest = 0;
+  let closestDist = Infinity;
+  igPosts.forEach((post, i) => {
+    const dist = Math.abs(post.getBoundingClientRect().left - trackLeft);
+    if(dist < closestDist){ closestDist = dist; closest = i; }
+  });
+  igDotEls.forEach((dot, i) => dot.classList.toggle('active', i === closest));
+}
+igTrack.addEventListener('scroll', () => {
+  clearTimeout(igTrack.__scrollTimer);
+  igTrack.__scrollTimer = setTimeout(updateIgActiveDot, 80);
+});
+igDots.addEventListener('click', (e) => {
+  const dot = e.target.closest('.ig-dot');
+  if(!dot) return;
+  igTrack.scrollTo({ left: igPosts[Number(dot.dataset.index)].offsetLeft, behavior: 'smooth' });
+});
+function igScrollByPage(dir){
+  const postWidth = igPosts[0].getBoundingClientRect().width + 8; // matches .ig-track gap
+  igTrack.scrollBy({ left: dir * postWidth * 2, behavior: 'smooth' });
+}
+igPrev.addEventListener('click', () => igScrollByPage(-1));
+igNext.addEventListener('click', () => igScrollByPage(1));
 
 // Shared lightbox — opens either a project's photo set or the plain gallery
 const lightbox = document.getElementById('lightbox');

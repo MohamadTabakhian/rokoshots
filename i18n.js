@@ -102,7 +102,11 @@ const translations = {
     formLabelEmail: 'Email',
     formLabelMessage: 'Message',
     formSubmitBtn: 'Book a Call',
-    footerCopyright: '© 2026 RokoShots · Budapest'
+    footerCopyright: '© 2026 RokoShots · Budapest',
+    instagramEyebrow: 'Instagram',
+    igFollowBtn: 'Follow',
+    ariaPrevPost: 'Previous post',
+    ariaNextPost: 'Next post'
   },
   hu: {
     navClients: 'Ügyfelek',
@@ -205,7 +209,11 @@ const translations = {
     formLabelEmail: 'Email',
     formLabelMessage: 'Üzenet',
     formSubmitBtn: 'Foglalj Hívást',
-    footerCopyright: '© 2026 RokoShots · Budapest'
+    footerCopyright: '© 2026 RokoShots · Budapest',
+    instagramEyebrow: 'Instagram',
+    igFollowBtn: 'Követés',
+    ariaPrevPost: 'Előző bejegyzés',
+    ariaNextPost: 'Következő bejegyzés'
   }
 };
 
