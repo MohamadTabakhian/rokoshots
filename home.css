@@ -253,18 +253,6 @@ a.rk-pill:hover{ color:var(--pill-text); }
   font-size:clamp(32px, 4.6vw, 52px);
   color:var(--cream);
 }
-.rk-work-filters{
-  display:flex; align-items:center; gap:10px;
-  font-family:'Inter', sans-serif;
-  font-size:11px; font-weight:600; letter-spacing:.14em; text-transform:uppercase;
-}
-.rk-work-filters button{
-  background:none; border:none; cursor:pointer;
-  font:inherit; color:var(--muted); padding:2px; transition:color .25s;
-}
-.rk-work-filters button.active, .rk-work-filters button:hover{ color:var(--cream); }
-.rk-work-filters .rk-dot{ color:var(--muted); }
-
 .rk-work-grid{
   display:grid;
   grid-template-columns:1fr;
@@ -293,8 +281,6 @@ a.rk-pill:hover{ color:var(--pill-text); }
   font-size:clamp(20px, 2.2vw, 27px);
   color:var(--cream);
 }
-.rk-work-card.rk-hidden{ display:none; }
-
 /* PLAIN PHOTO GRID */
 .rk-gallery{ padding:0 0 70px; }
 @media (min-width:600px){ .rk-gallery{ padding:0 0 90px; } }

@@ -38,49 +38,27 @@ function renderClientCloud(){
 }
 renderClientCloud();
 
-// Selected work — featured project cards with filter tabs + per-project lightbox
+// Selected work — featured project cards with per-project lightbox
 const workProjects = [
-  { num:'01', categoryKey:'workCategoryHotel', filter:'hotels', title:'Infinity Hotel', photos:['infinity1','infinity2','infinity3','infinity4'] },
-  { num:'02', categoryKey:'workCategoryRestaurant', filter:'dining', title:'The Club Avalon', photos:['avalon22-1','avalon22-2','avalon22-3','avalon22-4','avalon22-5'] },
-  { num:'03', categoryKey:'workCategoryBrand', filter:'drinks', title:'Tenebris Vodka', photos:['tenebris1','tenebris2','tenebris3','tenebris4','tenebris5'] },
-  { num:'04', categoryKey:'workCategoryHotel', filter:'hotels', title:'Avalon Hotel & Spa', photos:['avalon1','avalon2','avalon3','avalon4'] },
-  { num:'05', categoryKey:'workCategoryHotel', filter:'hotels', title:'Al Habtoor Palace', photos:['habtoor1','habtoor2','habtoor3','habtoor4'] },
-  { num:'06', categoryKey:'workCategoryBar', filter:'drinks', title:'Gemini Bar', photos:['gemini1','gemini2','gemini3','gemini4'] }
+  { num:'01', categoryKey:'workCategoryHotel', title:'Avalon Hotel & Spa', photos:['avalon2','avalon1','avalon3','avalon4'] },
+  { num:'02', categoryKey:'workCategoryHotel', title:'Al Habtoor Palace', photos:['habtoor2','habtoor1','habtoor3','habtoor4'] },
+  { num:'03', categoryKey:'workCategoryHotel', title:'The Moss', photos:['moss3','moss1','moss2','moss4','moss5'] }
 ];
 
 const workGrid = document.getElementById('workGrid');
-let activeFilter = null;
 
 function renderWorkGrid(){
-  // Column index is tracked over visible cards only, so the row-stagger
-  // animation stays aligned to the actual 3-col grid position when filtered.
-  let visibleIndex = 0;
-  workGrid.innerHTML = workProjects.map((p, i) => {
-    const isHidden = activeFilter && p.filter !== activeFilter;
-    const col = isHidden ? null : (visibleIndex++ % 3) + 1;
-    return `
-    <div class="rk-work-card${isHidden ? ' rk-hidden' : ''}" data-project="${i}"${col ? ` data-col="${col}"` : ''}>
+  workGrid.innerHTML = workProjects.map((p, i) => `
+    <div class="rk-work-card" data-project="${i}" data-col="${(i % 3) + 1}">
       <div class="rk-work-card-frame">
         <img src="${fullSrc(p.photos[0])}" alt="${p.title}" loading="lazy">
       </div>
       <div class="rk-work-meta">${p.num} &middot; <span data-i18n="${p.categoryKey}">${RokoI18n.t(p.categoryKey)}</span></div>
       <div class="rk-work-name">${p.title}</div>
     </div>
-  `;
-  }).join('');
+  `).join('');
 }
 renderWorkGrid();
-
-document.getElementById('workFilters').addEventListener('click', (e) => {
-  const btn = e.target.closest('button[data-filter]');
-  if(!btn) return;
-  const filter = btn.dataset.filter;
-  activeFilter = activeFilter === filter ? null : filter;
-  document.querySelectorAll('#workFilters button').forEach(b => {
-    b.classList.toggle('active', b.dataset.filter === activeFilter);
-  });
-  renderWorkGrid();
-});
 
 // About teaser — split into words for the scroll-linked highlight effect.
 // Re-run after langchange, since i18n resets textContent and wipes the spans.
@@ -133,16 +111,46 @@ if('IntersectionObserver' in window){
 
 // Plain photo grid — decorative gallery, no captions
 const galleryImages = [
-  'habtoor2','gemini2','velvet1','muse2','moss3','pizza1',
-  'sauska2','cortez3','furia2','tenebris3','merriott2','star3',
-  'sky2','valley4','yacht1'
+  'gallery1','gallery2','gallery3','gallery4','gallery5','gallery6',
+  'gallery7','gallery8','gallery9','gallery10','gallery11','gallery12',
+  'gallery13','gallery14','gallery15','gallery16','gallery17','gallery18',
+  'gallery19','gallery20','gallery21','gallery22','gallery23','gallery24'
 ];
+const galleryMeta = {
+  gallery1: { w:512, h:640, alt:'Pastel cocktail garnished with pink flowers, soft bokeh in the foreground' },
+  gallery2: { w:512, h:640, alt:'Hand reaching for a cocktail coupe on a round bar table' },
+  gallery3: { w:512, h:640, alt:'Bartender placing a red flower petal garnish on a cocktail' },
+  gallery4: { w:512, h:640, alt:'Red sports car parked outside a venue entrance at night' },
+  gallery5: { w:512, h:640, alt:'Bartender pouring a spirit over a large ice cube in a coupe glass' },
+  gallery6: { w:512, h:640, alt:'Bartender misting an orange twist over an Old Fashioned' },
+  gallery7: { w:388, h:640, alt:'Two garnished cocktails on a marble bar counter' },
+  gallery8: { w:512, h:640, alt:'Woman holding a passion fruit cocktail beside a pair of heels' },
+  gallery9: { w:427, h:640, alt:'Vintage red suitcases on a luggage cart in a hotel lobby' },
+  gallery10: { w:512, h:640, alt:'Bartender garnishing a red cocktail with an orange twist' },
+  gallery11: { w:512, h:640, alt:'Champagne poured into a coupe balanced on high heels' },
+  gallery12: { w:512, h:640, alt:'Sauce being poured over a seared steak beside a glass of red wine' },
+  gallery13: { w:512, h:640, alt:'Copper pan of creamy mushroom pasta being flambeed tableside' },
+  gallery14: { w:512, h:640, alt:'Two Aperol spritz cocktails beside a sunhat and magazine by the pool' },
+  gallery15: { w:497, h:640, alt:'Barista pouring latte art into a cappuccino' },
+  gallery16: { w:512, h:640, alt:'Tenebris vodka bottle with dramatic smoke against a dark blue backdrop' },
+  gallery17: { w:512, h:640, alt:'Orange cocktail with a citrus twist on a dark wood table' },
+  gallery18: { w:512, h:640, alt:'Woman laughing while holding two cocktails up to her eyes' },
+  gallery19: { w:512, h:640, alt:'Man in a light suit leaning on a bar with a whiskey cocktail' },
+  gallery20: { w:512, h:640, alt:'Hands holding cocktails and a bottle of Monkey Shoulder whisky' },
+  gallery21: { w:427, h:640, alt:'Woman reading a magazine on a hotel bed in a robe' },
+  gallery22: { w:478, h:640, alt:'Passion fruit martini beside a shot glass and halved passion fruit' },
+  gallery23: { w:512, h:640, alt:'Bartender finishing a green cocktail with gold flakes and a dried garnish' },
+  gallery24: { w:427, h:640, alt:'Woman in sunglasses holding a cocktail at a bar' }
+};
 const galleryGrid = document.getElementById('galleryGrid');
-galleryGrid.innerHTML = galleryImages.map((name, i) => `
+galleryGrid.innerHTML = galleryImages.map((name, i) => {
+  const meta = galleryMeta[name];
+  return `
   <button type="button" class="rk-gallery-item" data-gallery="${i}">
-    <img src="${thumbSrc(name)}" alt="" loading="lazy" decoding="async">
+    <img src="${thumbSrc(name)}" alt="${meta.alt}" width="${meta.w}" height="${meta.h}" loading="lazy" decoding="async">
   </button>
-`).join('');
+`;
+}).join('');
 
 // Instagram widget — static preview of recent posts, each tile links out
 // to the real profile (no post-level API, so there's nothing to embed live)
