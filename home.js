@@ -154,11 +154,7 @@ galleryGrid.innerHTML = galleryImages.map((name, i) => {
 
 // Instagram widget — static preview of recent posts, each tile links out
 // to the real profile (no post-level API, so there's nothing to embed live)
-const igImages = [
-  'habtoor2','gemini2','velvet1','muse2','moss3','pizza1',
-  'sauska2','cortez3','furia2','tenebris3','merriott2','star3',
-  'sky2','valley4','yacht1'
-];
+const igImages = ['ig-post1', 'moss3', 'ig-post3'];
 const IG_PROFILE_URL = 'https://www.instagram.com/rokoshots';
 const igTrack = document.getElementById('igTrack');
 const igDots = document.getElementById('igDots');
@@ -266,6 +262,78 @@ galleryGrid.addEventListener('click', (e) => {
   }, Number(btn.dataset.gallery));
 });
 
+// Contact heading word rotator — last word of "Tell me about your ___."
+// cycles through this list. The word list itself lives in i18n.js as
+// contactHeadingWords (one array per language, since the words need
+// matching grammar per language) — edit it there to add/remove words.
+const HEADING_ROTATE_INTERVAL_MS = 2750;
+const HEADING_ROTATE_TRANSITION_MS = 600;
+const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+const rkContactHeading = document.getElementById('rkContactHeading');
+const rkRotatorTrack = document.getElementById('rkRotatorTrack');
+let rotatorTimer = null;
+let rotatorWords = [];
+let rotatorIndex = 0;
+
+// Rebuilds the word list + accessible label from the current language.
+// Runs on init and whenever the language changes.
+function renderRotatorWords(){
+  if(!rkContactHeading || !rkRotatorTrack) return;
+
+  rotatorWords = RokoI18n.t('contactHeadingWords');
+  rotatorIndex = 0;
+
+  const normal = RokoI18n.t('contactHeadingNormal');
+  const prefix = RokoI18n.t('contactHeadingPrefix');
+  const or = RokoI18n.t('contactHeadingOr');
+  const suffix = RokoI18n.t('contactHeadingSuffix');
+  const listLabel = rotatorWords.length > 1
+    ? `${rotatorWords.slice(0, -1).join(', ')} ${or} ${rotatorWords[rotatorWords.length - 1]}`
+    : rotatorWords[0];
+  rkContactHeading.setAttribute('aria-label', `${normal} ${prefix} ${listLabel}${suffix}`);
+
+  rkRotatorTrack.innerHTML = rotatorWords.map((word, i) => `
+    <span class="rk-rotator-word${i === 0 ? ' is-active' : ''}">${word}${suffix}</span>
+  `).join('');
+}
+
+function stopRotatorInterval(){
+  clearInterval(rotatorTimer);
+  rotatorTimer = null;
+}
+
+// Starts (or restarts) the cycling interval from the currently active word.
+function startRotatorInterval(){
+  stopRotatorInterval();
+  if(prefersReducedMotion || !rkRotatorTrack || rotatorWords.length < 2) return;
+
+  rotatorTimer = setInterval(() => {
+    const items = rkRotatorTrack.children;
+    const current = items[rotatorIndex];
+    rotatorIndex = (rotatorIndex + 1) % rotatorWords.length;
+    const next = items[rotatorIndex];
+
+    current.classList.remove('is-active');
+    current.classList.add('is-leaving');
+    next.classList.add('is-active');
+
+    setTimeout(() => current.classList.remove('is-leaving'), HEADING_ROTATE_TRANSITION_MS);
+  }, HEADING_ROTATE_INTERVAL_MS);
+}
+
+renderRotatorWords();
+startRotatorInterval();
+
+// Pause the rotation while the tab is hidden so it doesn't drift or pile up.
+document.addEventListener('visibilitychange', () => {
+  if(document.hidden){
+    stopRotatorInterval();
+  } else {
+    startRotatorInterval();
+  }
+});
+
 // Contact form — reuses the same booking endpoint as the Book a Shoot page
 const contactForm = document.getElementById('rkContactForm');
 const contactNote = document.getElementById('rkFormNote');
@@ -316,4 +384,6 @@ document.addEventListener('rokoshots:langchange', () => {
   renderWorkGrid();
   if(activeSet) updateLightbox();
   splitAboutTeaserWords();
+  renderRotatorWords();
+  startRotatorInterval();
 });

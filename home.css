@@ -457,6 +457,26 @@ a.rk-pill:hover{ color:var(--pill-text); }
 }
 .rk-contact-heading em{ font-style:italic; font-weight:400; }
 
+.rk-rotator{
+  display:inline-grid;
+  vertical-align:top;
+  overflow:hidden;
+}
+.rk-rotator-track{ display:grid; }
+.rk-rotator-word{
+  grid-area:1 / 1;
+  white-space:nowrap;
+  opacity:0;
+  transform:translateY(.4em);
+  transition:opacity .6s ease, transform .6s ease;
+}
+.rk-rotator-word.is-active{ opacity:1; transform:translateY(0); }
+.rk-rotator-word.is-leaving{ opacity:0; transform:translateY(-.4em); }
+
+@media (prefers-reduced-motion: reduce){
+  .rk-rotator-word{ transition:none; }
+}
+
 .rk-contact-links{
   display:flex; flex-direction:column; gap:12px;
   margin-top:30px;
@@ -762,16 +782,19 @@ a.rk-pill:hover{ color:var(--pill-text); }
    Enhancements only kick in inside @supports — unsupported browsers,
    or a JS failure, simply show the content normally. */
 
-/* 1. Hero photo parallax — drifts and settles as you scroll past it */
+/* 1. Hero photo parallax — settles from a slight zoom as you scroll past it.
+   Scale-only and center-origin on purpose: at scale >= 1 the image always
+   overscans (or exactly matches) the clipped container, so it can never
+   pull away from an edge and expose the container background. A paired
+   vertical translate() used to do exactly that once scale settled to 1. */
 @supports (animation-timeline: view()){
   .rk-hero-photo img{
     scale:1.12;
-    translate:0 0%;
     animation: rk-hero-parallax linear;
     animation-timeline: view();
   }
   @keyframes rk-hero-parallax{
-    to{ scale:1; translate:0 12%; }
+    to{ scale:1; }
   }
 }
 
