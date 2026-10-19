@@ -468,7 +468,7 @@ a.rk-pill:hover{ color:var(--pill-text); }
   white-space:nowrap;
   opacity:0;
   transform:translateY(.4em);
-  transition:opacity .6s ease, transform .6s ease;
+  transition:opacity .5s ease, transform .5s ease;
 }
 .rk-rotator-word.is-active{ opacity:1; transform:translateY(0); }
 .rk-rotator-word.is-leaving{ opacity:0; transform:translateY(-.4em); }

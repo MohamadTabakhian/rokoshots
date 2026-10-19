@@ -271,8 +271,8 @@ galleryGrid.addEventListener('click', (e) => {
 // cycles through this list. The word list itself lives in i18n.js as
 // contactHeadingWords (one array per language, since the words need
 // matching grammar per language) — edit it there to add/remove words.
-const HEADING_ROTATE_INTERVAL_MS = 2750;
-const HEADING_ROTATE_TRANSITION_MS = 600;
+const HEADING_ROTATE_INTERVAL_MS = 2200;
+const HEADING_ROTATE_TRANSITION_MS = 500;
 const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
 const rkContactHeading = document.getElementById('rkContactHeading');
