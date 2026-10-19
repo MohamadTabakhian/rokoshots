@@ -154,7 +154,12 @@ galleryGrid.innerHTML = galleryImages.map((name, i) => {
 
 // Instagram widget — static preview of recent posts, each tile links out
 // to the real profile (no post-level API, so there's nothing to embed live)
-const igImages = ['ig-post1', 'moss3', 'ig-post3'];
+const igImages = [
+  'avalon2','habtoor2','gemini2','velvet1','muse2','moss3','pizza1',
+  'sauska2','cortez3','furia2','tenebris3','merriott2','star3',
+  'sky2','valley4','yacht1','infinity2','42-2','avalon4','habtoor4',
+  'gemini4','velvet3','muse4','simons'
+];
 const IG_PROFILE_URL = 'https://www.instagram.com/rokoshots';
 const igTrack = document.getElementById('igTrack');
 const igDots = document.getElementById('igDots');
